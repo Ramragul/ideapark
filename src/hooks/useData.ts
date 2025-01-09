@@ -22,7 +22,7 @@ const useData = <T>(endpoint : string , requestConfig?:AxiosRequestConfig ,deps?
 
             apiClient.get<FetchResponse<T>>(endpoint,{signal: controller.signal, ...requestConfig})
             .then(res => {
-               // console.log("Inside Api call " +JSON.stringify(res.data))
+                console.log("Inside Api call " +JSON.stringify(res.data))
                 setData(res.data.data)
                 setLoading(false)
             })

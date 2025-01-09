@@ -733,11 +733,11 @@ export const RegisterPage = () => {
         bg="white"
       >
         <Center mb={4}>
-          <img src={logo} alt="Logo" style={{ height: useBreakpointValue({ base: '40px', md: '60px' }) }} />
+          <img src={logo} alt="Logo" style={{ height: useBreakpointValue({ base: '40px', md: '175px' }) }} />
         </Center>
-        <Heading size={useBreakpointValue({ base: 'md', md: 'lg' })} textAlign="center" mb={6}>
+        {/* <Heading size={useBreakpointValue({ base: 'md', md: 'lg' })} textAlign="center" mb={6}>
           Register
-        </Heading>
+        </Heading> */}
 
         <RadioGroup
           onChange={(value) => setFormData({ ...formData, userType: value })}
@@ -838,7 +838,7 @@ export const RegisterPage = () => {
               <Input type="password" name="password" value={formData.password} onChange={handleChange} />
             </FormControl>
 
-            <Button colorScheme="pink" w="full" mt={6} type="submit">
+            <Button colorScheme="purple" w="full" mt={6} type="submit">
               Register
             </Button>
             {error && <Text color="red.500" mt={4}>{error}</Text>}

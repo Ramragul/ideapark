@@ -1,23 +1,29 @@
-import { CatalogueQuery } from "../App";
+
+
+  import { CatalogueQuery } from "../App";
 import { Category } from "./useCatalogueCategory";
 import useData from "./useData";
 
-export interface OrderItem {
-    id: string; // Assuming each item has a unique ID
-    name: string;
-    quantity: number;
-    price: number;
-    imageURL : string;
+export interface  Question  {
+    questionId: number;
+    category: string;
+    questionText: string;
+    options: Option[];
+  };
+
+  export interface Option  {
+    optionId: number;
+    questionId: number;
+    option_text: string;
+    is_correct: boolean;
+  };
+
+export interface TestDetails {
+    testId: string;
+    questions: Question[];
   }
 
-export interface YourOrders {
-    total : number;
-    date : string;
-    status : string;
-    productsPrice: number;
-    securityDeposit: number;
-    items : OrderItem[];
-}
+
 
 //const useDesignCatalogue = (catalogueQuery : CatalogueQuery , apiPath : string) => useData <Catalogue>("/api/cc/designcatalogue",
 const useGetData = ( userId: string | undefined,apiPath : string) => useData(apiPath,

@@ -65,6 +65,8 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 // Define the shape of the auth context
 interface AuthContextProps {
   authState: AuthState;
@@ -86,6 +88,9 @@ interface AuthState {
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+
+  const navigate = useNavigate();
+
   const [authState, setAuthState] = useState<AuthState>(() => {
     const savedAuthState = localStorage.getItem('authState');
     return savedAuthState ? JSON.parse(savedAuthState) : { isAuthenticated: false };
@@ -107,6 +112,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const logout = () => {
     setAuthState({ isAuthenticated: false, userId: undefined, userName: undefined , userEmail : undefined });
     localStorage.removeItem('authState');
+    navigate('/aboutUs')
   };
 
   return (

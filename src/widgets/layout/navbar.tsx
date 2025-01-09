@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <IconButton
           size="md"
-          icon={isOpen ? <CloseIcon /> : <HamburgerIcon color="pink.900" />}
+          icon={isOpen ? <CloseIcon /> : <HamburgerIcon color="purple" />}
           aria-label="Open Menu"
           display={{ base: 'block', lg: 'none' }}
           onClick={isOpen ? onClose : onOpen}
@@ -50,28 +50,32 @@ const Navbar: React.FC = () => {
 
         </HStack>
         <HStack spacing={8} alignItems="center" justifyContent={{ base: 'center', lg: 'space-between' }}>
-          <HStack as="nav" spacing={4} display={{ base: 'none', lg: 'flex' }} color="pink.600">
-            <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/">
+          <HStack as="nav" spacing={4} display={{ base: 'none', lg: 'flex' }} color="purple">
+            <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href={(userRole ==="Business Partner") ? "/partner/home" : "/student/home"}>
               Home
             </Link>
+            {/* <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} onClick={() => userRole === "Business Partner" ? navigate("/partner/home") : navigate("/student/home")}>
+             Home
+            </Link> */}
+
             <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/aboutUs">
               About Us
             </Link>
             <Box>
-              <img src={logo1} alt="Cotton Candy Logo" style={{ height: '55px' }} />
+              <img src={logo1} alt="Cotton Candy Logo" style={{ height: '70px' }} />
             </Box>
             <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/businessPartnerForm">
             Partner With Us
             </Link>
-            {(userRole != 'user' && userRole != undefined) && (<Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/adminDashboard">
+            {/* {(userRole != 'user' && userRole != undefined) && (<Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/adminDashboard">
             Admin Dashboard
-            </Link> ) }
+            </Link> ) } */}
             <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/contactUs">
               Contact Us
             </Link>
-            <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/winner">
+            {/* <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/winner">
               Diwali Giveaway Winner
-            </Link>
+            </Link> */}
             {/* {( authState.isAuthenticated && */}
             
 
@@ -84,11 +88,11 @@ const Navbar: React.FC = () => {
 
         <HStack display={{ lg: 'none' }} >
         <Box >
-        <img src={logo1} alt="Cotton Candy Logo" style={{ height: '55px' }} />
+        <img src={logo1} alt="Cotton Candy Logo" style={{ height: '70px' }} />
             </Box>
         </HStack> 
 
-        <HStack spacing={4} alignItems="center" color="pink.600">
+        <HStack spacing={4} alignItems="center" color="purple">
 
           {authState.isAuthenticated ? (
             <Menu>
@@ -99,11 +103,11 @@ const Navbar: React.FC = () => {
                 cursor="pointer"
                 minW={0}
               >
-                <Avatar size="sm" name={authState.userName} bg="pink.600" />
+                <Avatar size="sm" name={authState.userName} bg="purple" color='white'/>
               </MenuButton>
               <MenuList>
                 <Box textAlign="center" p={2}>
-                  <Avatar size="md" name={authState.userName} bg="pink.600" />
+                  <Avatar size="md" name={authState.userName} bg="purple" color = 'white'/>
                   <Box mt={2} fontWeight="bold">{authState.userName}</Box>
                 </Box>
                 <MenuDivider />
@@ -111,13 +115,13 @@ const Navbar: React.FC = () => {
                 <MenuItem onClick={() => navigate('/yourOrders')}>Your Orders</MenuItem>
                 <MenuItem>Settings</MenuItem>
                 <MenuDivider />
-                <MenuItem onClick={logout} as={Button} variant="solid" colorScheme="pink">Logout</MenuItem>
+                <MenuItem onClick={logout} as={Button} variant="solid" colorScheme="purple">Logout</MenuItem>
               </MenuList>
             </Menu>
           ) : (
             <Link href="/login" display="flex" alignItems="center">
-              <Box as={FaRegUserCircle} size={24} mr={2} color="pink.600" />
-              <Box fontSize="md" fontWeight="bold" color="pink.600">
+              <Box as={FaRegUserCircle} size={24} mr={2} color="purple" />
+              <Box fontSize="md" fontWeight="bold" color="purple">
                 Login
               </Box>
             </Link>
@@ -127,38 +131,42 @@ const Navbar: React.FC = () => {
 
       {isOpen && (
         <Box pb={4} display={{ lg: 'none' }}>
-          <Stack as="nav" spacing={4} color="pink.600">
-            <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/">
+          <Stack as="nav" spacing={4} color="purple">
+            <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href={(userRole ==="Business Partner") ? "/partner/home" : "/student/home"}>
               Home
             </Link>
+            {/* <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} onClick={() => userRole === "Business Partner" ? navigate("/partner/home") : navigate("/student/home")}>
+             Home
+            </Link> */}
             <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/aboutUs">
               About Us
             </Link>
             <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/businessPartnerForm">
              Partner With Us
             </Link>
-            {(userRole != 'user') && (<Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/adminDashboard">
+            {/* {(userRole != 'user') && (<Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/adminDashboard">
             Admin Dashboard
-            </Link> ) }
+            </Link> ) } */}
             <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/contactUs">
               Contact Us
             </Link>
-            <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/winner">
+            {/* <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/winner">
               Diwali Giveaway Winner
-            </Link>
+            </Link> */}
 
             {authState.isAuthenticated && (
               <Button
                 mt={2}
                 bg="black"
-                color="pink.200"
+                color="purple"
                 _hover={{ bg: 'gray.700' }}
                 borderRadius="md"
                 px={4}
                 py={2}
-                onClick={logout}
+                onClick= {logout}
+               
               >
-                Logout
+                Logout1
               </Button>
             )}
           </Stack>

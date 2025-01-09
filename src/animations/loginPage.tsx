@@ -144,7 +144,7 @@ export const LoginPage = () => {
       login(user.userName, user.userId, user.userEmail, user.pId , user.userRole); // Store the user ID and username
       setSuccess(true);
       // setTimeout(() => navigate(-1), 5000); // Navigate to the previous page after 3 seconds
-      setTimeout(() => navigate(navigateURL), 5000);
+      setTimeout(() => navigate(navigateURL), 1000);
     } catch (error) {
       setError('Invalid credentials. Please try again.');
       toast({
@@ -169,7 +169,7 @@ export const LoginPage = () => {
         boxShadow="lg"
         textAlign="center"
       >
-        <img src={logo} alt="Logo" style={{ margin: '0 auto 20px', height: '50px' }} />
+        {/* <img src={logo} alt="Logo" style={{ margin: '0 auto 20px', height: '50px' }} /> */}
         <Heading mb={6}>Login</Heading>
         {success ? (<>
           <Lottie animationData={successAnimation} style={{ height: '200px' }} />

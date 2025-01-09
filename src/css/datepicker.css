@@ -1,0 +1,58 @@
+.react-datepicker {
+    font-family: 'Inter', sans-serif;
+    border: 1px solid #CBD5E0; /* Gray.300 in Chakra */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .react-datepicker__header {
+    background-color: #EDF2F7; /* Gray.100 in Chakra */
+    border-bottom: 1px solid #CBD5E0; /* Gray.300 */
+  }
+  
+  .react-datepicker__day--selected {
+    background-color: #319795; /* Teal.500 in Chakra */
+    color: white;
+  }
+  
+  .react-datepicker__day--keyboard-selected {
+    background-color: #319795; /* Teal.500 in Chakra */
+    color: white;
+  }
+  
+  .react-datepicker__day:hover {
+    background-color: #68D391; /* Green.400 in Chakra */
+  }
+  
+  .react-datepicker__close-icon::after {
+    background-color: #E53E3E; /* Red.500 in Chakra */
+    color: white;
+    font-weight: bold;
+  }
+  
+
+  .custom-date-picker-wrapper .react-datepicker__input-container input {
+    background-color: #EDF2F7; /* Chakra gray.200 */
+    border: 1px solid #CBD5E0; /* Chakra gray.300 */
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .custom-date-picker-wrapper input:hover {
+    border-color: #319795; /* Chakra teal.500 */
+  }
+  
+  .custom-date-picker-wrapper input:focus {
+    outline: none;
+    border-color: #3182ce; /* Chakra blue.500 */
+    box-shadow: 0 0 0 1px #3182ce;
+  }
+  
+
+  .custom-date-picker-wrapper .react-datepicker__input-container input::placeholder {
+    color: #718096; /* Chakra gray.500 */
+    background-color: #EDF2F7; /* Chakra gray.200 */
+    padding: 0.5rem; /* Optional for better spacing */
+    border-radius: 4px; /* Optional for rounded corners */
+  }
+  

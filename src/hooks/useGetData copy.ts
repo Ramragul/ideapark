@@ -10,15 +10,6 @@ export interface OrderItem {
     imageURL : string;
   }
 
-export interface YourOrders {
-    total : number;
-    date : string;
-    status : string;
-    productsPrice: number;
-    securityDeposit: number;
-    items : OrderItem[];
-}
-
 //const useDesignCatalogue = (catalogueQuery : CatalogueQuery , apiPath : string) => useData <Catalogue>("/api/cc/designcatalogue",
 const useGetData = ( userId: string | undefined,apiPath : string) => useData(apiPath,
 {

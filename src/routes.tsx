@@ -1,4 +1,4 @@
-import {Home, Page1, ExamPage, LoginPage, RegisterPage, AboutUs} from "./pages";
+import {Home, TestCreationPage, ExamPage, LoginPage, RegisterPage, AboutUs,PartnerLandingPage,StudentTestDashboard, TestManagementPage, TestDetailsPage, TestResultPage,TestResultDetailsPage,TestStatsPage,StudentStatsPage,StudentStatsDetailsPage,StudentHomePage,FileFormatPage,ResetPasswordPage, VideoPlaybackPage, VideoUploadPage} from "./pages";
 import {
   HomeIcon,
   UserCircleIcon,
@@ -15,6 +15,7 @@ import { FaSearch } from 'react-icons/fa';
 
 
 
+
 export const routes = [
   {
     icon: HomeIcon,
@@ -25,9 +26,9 @@ export const routes = [
   },
   {
     icon: CheckBadgeIcon,
-    name: "page1",
-    path: "/page1",
-    element: <Page1 />,
+    name: "testCreation",
+    path: "/test/creation",
+    element: <TestCreationPage />,
     visible: false,
   },
   {
@@ -57,6 +58,107 @@ export const routes = [
     name: "aboutUs",
     path: "/aboutUs",
     element: <AboutUs />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
+    name: "partnerHome",
+    path: "/partner/home",
+    element: <PartnerLandingPage />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
+    name: "studentTestDashboard",
+    path: "/student/test/dashboard",
+    element: <StudentTestDashboard />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
+    name: "testManagement",
+    path: "/test/management",
+    element: <TestManagementPage />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
+    name: "testDetails",
+    path: "/testDetails",
+    element: <TestDetailsPage />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
+    name: "testResult",
+    path: "/test/result",
+    element: <TestResultPage />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
+    name: "testResultDetails",
+    path: "/result/details",
+    element: <TestResultDetailsPage />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
+    name: "testStats",
+    path: "/test/stats",
+    element: <TestStatsPage />,
+    visible: false,
+  },
+  
+  {
+    icon: CheckBadgeIcon,
+    name: "studentStats",
+    path: "/student/stats",
+    element: <StudentStatsPage />,
+    visible: false,
+  },
+  
+  {
+    icon: CheckBadgeIcon,
+    name: "studentStatsDetails",
+    path: "/student/stats/details",
+    element: <StudentStatsDetailsPage />,
+    visible: false,
+  },
+
+  {
+    icon: CheckBadgeIcon,
+    name: "studentHomePage",
+    path: "/student/home",
+    element: <StudentHomePage />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
+    name: "FileFormatPage",
+    path: "/file/format",
+    element: <FileFormatPage />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
+    name: "ResetPasswordPage",
+    path: "/reset/password",
+    element: <ResetPasswordPage />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
+    name: "VideoUploadPage",
+    path: "/video/upload",
+    element: <VideoUploadPage />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
+    name: "VideoPlaybackPage",
+    path: "/video/play",
+    element: <VideoPlaybackPage />,
     visible: false,
   },
   

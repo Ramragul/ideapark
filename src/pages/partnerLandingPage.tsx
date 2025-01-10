@@ -1,13 +1,5 @@
-// import React from 'react'
 
-// export const PartnerLandingPage= () => {
-//   return (
-//     <div>partnerLandingPage</div>
-//   )
-// }
-
-// export default PartnerLandingPage;
-
+// Version 1
 
 
 import React from "react";
@@ -24,7 +16,7 @@ export const PartnerLandingPage: React.FC = () => {
   const navigate = useNavigate ();
   return (
     <Box p={6} bg="gray.50" minH="100vh">
-      <Heading textAlign="center" mb={6} color="teal.500">
+      <Heading textAlign="center" mb={6} color="#9966CC">
        {authState.userName}
       </Heading>
       <Text textAlign="center" mb={8} fontSize="lg" color="gray.600">
@@ -116,6 +108,28 @@ export const PartnerLandingPage: React.FC = () => {
           </Button>
         </GridItem>
 
+        {/* Lecture Video Uploads*/}
+
+         <GridItem
+          bg="white"
+          p={6}
+          shadow="md"
+          borderRadius="lg"
+          textAlign="center"
+          _hover={{ shadow: "lg", transform: "scale(1.02)", transition: "0.2s" }}
+        >
+          <Heading size="md" color="pink.700" mb={4}>
+          Lecture Video Upload
+          </Heading>
+          <Text color="gray.500" mb={6}>
+          Upload Lecture Videos in a simple steps
+          </Text>
+          <Button bgColor="pink.700"  color="white" size="md" onClick= {()=> navigate('/video/upload')}>
+          Upload Video
+          </Button>
+        </GridItem>
+
+
          {/* File Format Tile */}
 
         <GridItem
@@ -137,6 +151,7 @@ export const PartnerLandingPage: React.FC = () => {
           </Button>
         </GridItem>
 
+
         {/* Support Tile */}
         <GridItem
           bg="white"
@@ -146,13 +161,13 @@ export const PartnerLandingPage: React.FC = () => {
           textAlign="center"
           _hover={{ shadow: "lg", transform: "scale(1.02)", transition: "0.2s" }}
         >
-          <Heading size="md" color="pink.600" mb={4}>
+          <Heading size="md" color="pink.500" mb={4}>
             Support
           </Heading>
           <Text color="gray.500" mb={6}>
             Access FAQs, guides, and get help from our support team.
           </Text>
-          <Button colorScheme="pink" size="md">
+          <Button bgColor="pink.500" color="white" size="md">
             Get Support
           </Button>
         </GridItem>

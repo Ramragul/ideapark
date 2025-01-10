@@ -1,4 +1,4 @@
-import {Home, TestCreationPage, ExamPage, LoginPage, RegisterPage, AboutUs,PartnerLandingPage,StudentTestDashboard, TestManagementPage, TestDetailsPage, TestResultPage,TestResultDetailsPage,TestStatsPage,StudentStatsPage,StudentStatsDetailsPage,StudentHomePage,FileFormatPage,ResetPasswordPage, VideoPlaybackPage, VideoUploadPage} from "./pages";
+import {Home, TestCreationPage, ExamPage, LoginPage, RegisterPage, AboutUs,PartnerLandingPage,StudentTestDashboard, TestManagementPage, TestDetailsPage, TestResultPage,TestResultDetailsPage,TestStatsPage,StudentStatsPage,StudentStatsDetailsPage,StudentHomePage,StudentTestHomePage,FileFormatPage,ResetPasswordPage, VideoPlaybackPage, VideoUploadPage} from "./pages";
 import {
   HomeIcon,
   UserCircleIcon,
@@ -128,6 +128,13 @@ export const routes = [
 
   {
     icon: CheckBadgeIcon,
+    name: "studentTestHomePage",
+    path: "/student/home/test",
+    element: <StudentTestHomePage />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
     name: "studentHomePage",
     path: "/student/home",
     element: <StudentHomePage />,
@@ -157,7 +164,7 @@ export const routes = [
   {
     icon: CheckBadgeIcon,
     name: "VideoPlaybackPage",
-    path: "/video/play",
+    path: "student/lecture",
     element: <VideoPlaybackPage />,
     visible: false,
   },

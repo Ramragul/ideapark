@@ -32,7 +32,7 @@ export const VideoUploadPage: React.FC = () => {
     formData.append('uploader_id', uploaderId);
 
     try {
-      const response = await axios.post('/api/upload-video', formData, {
+      const response = await axios.post('https://admee.in:3003/aws/upload/video', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       toast({ title: 'Success', description: response.data.message, status: 'success' });

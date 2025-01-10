@@ -1,136 +1,72 @@
-// import React from 'react';
-// import { Box, Flex, Heading, Grid, GridItem, Button, VStack, Text } from '@chakra-ui/react';
-// import { useNavigate } from 'react-router-dom';
-
-// export const StudentHomePage: React.FC = () => {
-//   const navigate = useNavigate();
-
-//   const tiles = [
-//     { title: 'Take a Test', description: 'Start your journey by attempting tests.', path: '/exam' },
-//     { title: 'View Results', description: 'Check your performance and results.', path: '/test/result' },
-//   ];
-
-//   return (
-//     <Box bgGradient="linear(to-r, pink.100, blue.100)" minH="100vh" py={8}>
-//       <VStack spacing={4} align="center">
-//         <Heading as="h1" size="2xl" color="pink.600">
-//           Welcome, Candidate!
-//         </Heading>
-//         <Text fontSize="lg" color="gray.600">
-//           Explore your options below and get started.
-//         </Text>
-//       </VStack>
-//       <Grid
-//         templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
-//         gap={6}
-//         px={{ base: 4, md: 8 }}
-//         mt={8}
-//       >
-//         {tiles.map((tile, index) => (
-//           <GridItem key={index}>
-//             <Flex
-//               direction="column"
-//               align="center"
-//               bgGradient="linear(to-t, blue.300, pink.200)"
-//               borderRadius="md"
-//               shadow="md"
-//               p={6}
-//               h="full"
-//               justifyContent="center"
-//               _hover={{ transform: 'scale(1.05)', shadow: 'lg' }}
-//               transition="0.3s"
-//             >
-//               <Heading as="h3" size="lg" color="white">
-//                 {tile.title}
-//               </Heading>
-//               <Text mt={2} mb={4} fontSize="md" color="whiteAlpha.800" textAlign="center">
-//                 {tile.description}
-//               </Text>
-//               <Button
-//                 size="lg"
-//                 colorScheme="pink"
-//                 variant="solid"
-//                 onClick={() => navigate(tile.path)}
-//               >
-//                 Go to {tile.title}
-//               </Button>
-//             </Flex>
-//           </GridItem>
-//         ))}
-//       </Grid>
-//     </Box>
-//   );
-// };
-
-// export default StudentHomePage;
-
-
-// Version 2 
-
-import React from 'react';
-import { Box, Flex, Heading, Grid, GridItem, Button, VStack, Text } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
+import React from "react";
+import { Box, Button, Flex, Heading, Text, VStack } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export const StudentHomePage: React.FC = () => {
   const navigate = useNavigate();
-  const {authState} = useAuth()
-
-  const tiles = [
-    { title: 'Take a Test', description: 'Start your journey by attempting tests.', path: '/student/test/dashboard', bg: 'teal.400', hover: 'teal.500' },
-    { title: 'View Results', description: 'Check your performance and results.', path: '/test/result', bg: 'orange.400', hover: 'orange.500' },
-  ];
 
   return (
-    <Box bgGradient="linear(to-br, green.50, yellow.50)" minH="100vh" py={8}>
-      <VStack spacing={4} align="center">
-        <Heading as="h1" size="2xl" color="green.600">
-          Welcome, {authState.userName}!
-        </Heading>
-        <Text fontSize="lg" color="gray.600">
-          Explore your options below and get started.
-        </Text>
-      </VStack>
-      <Grid
-        templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
+    <Flex
+      direction="column"
+      align="center"
+      justify="center"
+      minH="100vh"
+      bgGradient="linear(to-b, purple.600, purple.800)"
+      color="white"
+      p={4}
+    >
+      <Heading mb={8} fontSize={{ base: "2xl", md: "4xl" }}>
+        Welcome to Student Home Page
+      </Heading>
+      <Flex
+        wrap="wrap"
+        justify="center"
         gap={6}
-        px={{ base: 4, md: 8 }}
-        mt={8}
+        w={{ base: "100%", md: "70%" }}
       >
-        {tiles.map((tile, index) => (
-          <GridItem key={index}>
-            <Flex
-              direction="column"
-              align="center"
-              bg={tile.bg}
-              borderRadius="md"
-              shadow="lg"
-              p={6}
-              h="full"
-              justifyContent="center"
-              _hover={{ bg: tile.hover, transform: 'scale(1.05)', shadow: 'xl' }}
-              transition="0.3s"
-            >
-              <Heading as="h3" size="lg" color="white">
-                {tile.title}
-              </Heading>
-              <Text mt={2} mb={4} fontSize="md" color="whiteAlpha.900" textAlign="center">
-                {tile.description}
-              </Text>
-              <Button
-                size="lg"
-                colorScheme="whiteAlpha"
-                variant="outline"
-                _hover={{ bg: 'whiteAlpha.300' }}
-                onClick={() => navigate(tile.path)}
-              >
-                Go to {tile.title}
-              </Button>
-            </Flex>
-          </GridItem>
-        ))}
-      </Grid>
-    </Box>
+        {/* Tile for Test Home Page */}
+        <Box
+          w={{ base: "100%", md: "45%" }}
+          h="200px"
+          bg="purple.500"
+          borderRadius="lg"
+          boxShadow="lg"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          transition="transform 0.2s"
+          _hover={{ transform: "scale(1.05)", bg: "purple.400" }}
+          cursor="pointer"
+          onClick={() => navigate("/student/home/test")}
+        >
+          <Text fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold">
+            Test Home Page
+          </Text>
+        </Box>
+
+        {/* Tile for Lectures Page */}
+        <Box
+          w={{ base: "100%", md: "45%" }}
+          h="200px"
+          bg="purple.500"
+          borderRadius="lg"
+          boxShadow="lg"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          transition="transform 0.2s"
+          _hover={{ transform: "scale(1.05)", bg: "purple.400" }}
+          cursor="pointer"
+          onClick={() => navigate("/student/lecture")}
+        >
+          <Text fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold">
+            Lectures Page
+          </Text>
+        </Box>
+      </Flex>
+    </Flex>
   );
 };
 

@@ -105,15 +105,14 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import successAnimation from '../animations/successfulLogin.json';
-import failureAnimation from '../animations/error.json';
-import logo from '../assets/navbar/logo1.jpg';
+//import failureAnimation from '../animations/error.json';
+//import logo from '../assets/navbar/logo1.jpg';
 import {
   Box,
   Button,
   Input,
   FormControl,
   FormLabel,
-  Stack,
   Heading,
   Center,
   useToast,

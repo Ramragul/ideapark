@@ -1,5 +1,4 @@
-import { CatalogueQuery } from "../App";
-import { Category } from "./useCatalogueCategory";
+
 import useData from "./useData";
 
 export interface OrderItem {

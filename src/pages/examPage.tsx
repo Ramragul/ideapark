@@ -2504,7 +2504,7 @@ import loadingAnimation from '../animations/loading.json';
 import Lottie from 'lottie-react';
 import axios from 'axios';
 
-const isHTML = (string) => {
+const isHTML = (string: string) => {
   const doc = new DOMParser().parseFromString(string, 'text/html');
   return Array.from(doc.body.childNodes).some((node) => node.nodeType === 1);
 };
@@ -2544,14 +2544,14 @@ export const ExamPage: React.FC = () => {
   const [showAnimation, setShowAnimation] = useState(false);
   const [remainingTime, setRemainingTime] = useState<number>(testDuration * 60); // Convert minutes to seconds
 
-  const { postData, isLoading: isUpdating, responseData, error } = usePostData('/ip/test/submit');
+  const { postData, responseData, error } = usePostData('/ip/test/submit');
   const { authState } = useAuth();
   const navigate = useNavigate();
 
-  const isSubmitting = useRef(false);
+  //const isSubmitting = useRef(false);
 
    const isSubmittingFlag = useRef(false); // Flag to track manual submission
-  const isSubmittingTimeoutFlag = useRef(false); // Flag to track timeout submission
+  //const isSubmittingTimeoutFlag = useRef(false); // Flag to track timeout submission
 
 //   useEffect(() => {
 //     const fetchTestDetails = async () => {
@@ -2686,8 +2686,10 @@ useEffect(() => {
   //   }
   // }, [testDuration]);
 
-  const testDetailsRef = useRef();
-  const selectedAnswersRef = useRef();
+  //const testDetailsRef = useRef();
+  const testDetailsRef = useRef<TestDetails | null>(null);
+ // const selectedAnswersRef = useRef();
+  const selectedAnswersRef = useRef<{ [key: number]: number } | undefined>(undefined);
 
   useEffect(() => {
     testDetailsRef.current = testDetails; // Update the ref whenever testDetails changes
@@ -2698,205 +2700,10 @@ useEffect(() => {
   }, [selectedAnswers]);
     
 
-// In the useEffect where testDetails are fetched
-// useEffect(() => {
-//     const fetchTestDetails = async () => {
-//       try {
-//         const response = await axios.get(`https://admee.in:3003/api/ip/testDetails/${testID}`);
-//         console.log("Test details fetched:", response.data.data); // Check if testDetails are fetched
-//         setTestDetails(response.data.data); // Update state with fetched test details
-//       } catch (error) {
-//         console.error('Error fetching test details:', error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-  
-//     fetchTestDetails();
-//   }, [testID]);
-  
-  // Handle timeout submission working version, only issue is it is getting called two times
-  // const handleTimeoutSubmit = async () => {
-  //   //console.log("TestDetails in handleTimeoutSubmit:", JSON.stringify(testDetails)); // Check if testDetails are available
-  //   console.log("Accessing latest testDetails:", testDetailsRef.current); 
-    
-  //   if (!testDetailsRef.current || !testDetailsRef.current.questions || testDetailsRef.current.questions.length === 0) {
-  //     console.log("Test details not available yet!"); // If testDetails are not available, log this message
-  //     return; // Prevent further execution if data is not available yet
-  //   }
-   
-   
-  
- 
-  //   let updatedSelectedAnswers = testDetailsRef.current.questions.reduce((acc, question) => {
-  //     acc[question.questionId] = selectedAnswersRef.current[question.questionId] || 0; // Default unattempted to 0
-  //     return acc;
-  //   }, {});
 
-
-  //   console.log("Updated selectedAnswers before submission:", updatedSelectedAnswers); // Log updated selected answers
-  
-  //   // Prepare payload
-  //   const payload = {
-  //     userID: authState.userId,
-  //     testID: testID,
-  //     selectedAnswers: updatedSelectedAnswers,
-  //   };
-  
-  //   // Store selectedAnswers in localStorage for timeout submission
-  //   localStorage.setItem('selectedAnswers', JSON.stringify(updatedSelectedAnswers));
-  
-  //   // Show loading animation and submit the data
-  //   setShowAnimation(true);
-  //   setAnimationType('loading');
-  
-  //   try {
-  //     await postData(payload);
-  //     setShowAnimation(false); // Hide animation after successful submission
-  //   } catch (error) {
-  //     console.error('Error during timeout submission:', error);
-  //     setShowAnimation(false); // Hide animation if error occurs
-  //   }
-  // };
-
-  // const acquireLock = () => {
-  //   if (isSubmitting.current) return false; // If already locked, deny access
-  //   isSubmitting.current = true; // Acquire the lock
-  //   return true;
-  // };
-  
-  // const releaseLock = () => {
-  //   isSubmitting.current = false; // Release the lock
-  // };
-  
-
-
-// const handleTimeoutSubmit = async () => {
-
-//   if (!acquireLock()) {
-//     console.log("Submission already in progress. Ignoring this call.");
-//     return; // Prevent duplicate submissions
-//   }
-  
-
-//   console.log("Submitting timeout Handle Timeout function...");
-
-//   if (!testDetailsRef.current || !testDetailsRef.current.questions.length) {
-//     console.log("Test details not available!");
-//     isSubmitting = false; // Allow retries
-//     return;
-//   }
-
-//   const updatedSelectedAnswers = testDetailsRef.current.questions.reduce((acc, question) => {
-//     acc[question.questionId] = selectedAnswersRef.current?.[question.questionId] || 0;
-//     return acc;
-//   }, {});
-
-//   const payload = {
-//     userID: authState.userId,
-//     testID: testID,
-//     selectedAnswers: updatedSelectedAnswers,
-//   };
-
-//   setShowAnimation(true);
-//   setAnimationType('loading');
-
-//   try {
-//     await postData(payload);
-//     setShowAnimation(false);
-//     releaseLock();
-//   } catch (error) {
-//     console.error("Error during timeout submission:", error);
-//     setShowAnimation(false);
-//     releaseLock();
-//   } 
-  
-
-// };
-
-  
-
-// const handleTimeoutSubmit = async () => {
-//   if (isSubmittingFlag.current || isSubmittingTimeoutFlag.current) {
-//     console.log("A submission is already in progress. Ignoring this call.");
-//     return; // Prevent duplicate submissions
-//   }
-
-//   isSubmittingTimeoutFlag.current = true; // Block timeout submission while a manual submit is in progress
-//   console.log("Submitting timeout handleTimeoutSubmit...");
-
-//   if (!testDetailsRef.current || !testDetailsRef.current.questions.length) {
-//     console.log("Test details not available!");
-//     isSubmittingTimeoutFlag.current = false; // Reset flag in case of error or no data
-//     return;
-//   }
-
-//   const updatedSelectedAnswers = testDetailsRef.current.questions.reduce((acc, question) => {
-//     acc[question.questionId] = selectedAnswersRef.current?.[question.questionId] || 0;
-//     return acc;
-//   }, {});
-
-//   const payload = {
-//     userID: authState.userId,
-//     testID: testID,
-//     selectedAnswers: updatedSelectedAnswers,
-//   };
-
-//   setShowAnimation(true);
-//   setAnimationType('loading');
-
-//   try {
-//     await postData(payload);
-//     console.log("Timeout submission successful");
-//   } catch (error) {
-//     console.error("Error during timeout submission:", error);
-//   } finally {
-//     isSubmittingTimeoutFlag.current = false; // Reset timeout flag after submission
-//     setShowAnimation(false);
-//   }
-// };
-
-// // Button submit function
-// const handleSubmit = async () => {
-//   if (isSubmittingFlag.current || isSubmittingTimeoutFlag.current) {
-//     console.log("A submission is already in progress. Ignoring this call.");
-//     return; // Prevent duplicate submissions
-//   }
-
-//   isSubmittingFlag.current = true; // Block further submissions while this one is in progress
-//   console.log("Submitting through handleSubmit button...");
-
-//   const payload = {
-//     userID: authState.userId,
-//     testID: testID,
-//     selectedAnswers: {
-//       ...testDetails?.questions.reduce((acc, question) => {
-//         acc[question.questionId] = selectedAnswers[question.questionId] || 0;
-//         return acc;
-//       }, {}),
-//     },
-//   };
-
-//   setShowAnimation(true);
-//   setAnimationType('loading');
-
-//   try {
-//     await postData(payload);
-//     console.log("Button submission successful");
-//   } catch (error) {
-//     console.error("Error during button submission:", error);
-//   } finally {
-//     isSubmittingFlag.current = false; // Reset flag after submission
-//     setShowAnimation(false);
-//   }
-// };
-
-
-
-//const isSubmittingFlag = useRef(false); // Shared lock for both button and timeout submissions
 
 // Timeout submission function triggered by useEffect
-const handleTimeoutSubmit = async (isTimeout) => {
+const handleTimeoutSubmit = async () => {
   if (isSubmittingFlag.current) {
     console.log("A submission is already in progress (timeout). Ignoring this call.");
     return; // Prevent duplicate submissions
@@ -2912,10 +2719,18 @@ const handleTimeoutSubmit = async (isTimeout) => {
     return;
   }
 
-  const updatedSelectedAnswers = testDetailsRef.current.questions.reduce((acc, question) => {
-    acc[question.questionId] = selectedAnswersRef.current?.[question.questionId] || 0;
-    return acc;
-  }, {});
+  // const updatedSelectedAnswers = testDetailsRef.current.questions.reduce((acc, question) => {
+  //   acc[question.questionId] = selectedAnswersRef.current?.[question.questionId] || 0;
+  //   return acc;
+  // }, {});
+
+  const updatedSelectedAnswers = testDetailsRef.current.questions.reduce(
+    (acc: { [key: number]: number }, question) => {
+      acc[question.questionId] = selectedAnswersRef.current?.[question.questionId] || 0;
+      return acc;
+    },
+    {} as { [key: number]: number } // Explicitly cast the initial value
+  );
 
   const payload = {
     userID: authState.userId,
@@ -2951,12 +2766,20 @@ const handleSubmit = async () => {
   const payload = {
     userID: authState.userId,
     testID: testID,
+    // selectedAnswers: {
+    //   ...testDetails?.questions.reduce((acc, question) => {
+    //     acc[question.questionId] = selectedAnswers[question.questionId] || 0;
+    //     return acc;
+    //   }, {}),
+    // },
+
     selectedAnswers: {
-      ...testDetails?.questions.reduce((acc, question) => {
+      ...testDetails?.questions.reduce<Record<number, number>>((acc, question) => {
         acc[question.questionId] = selectedAnswers[question.questionId] || 0;
         return acc;
       }, {}),
     },
+    
   };
 
   setShowAnimation(true);
@@ -2980,7 +2803,7 @@ useEffect(() => {
       setRemainingTime((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          handleTimeoutSubmit(true); // Submit due to timeout
+          handleTimeoutSubmit(); // Submit due to timeout
           return 0;
         }
         return prev - 1;

@@ -630,7 +630,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import successAnimation from '../animations/successfulLogin.json';
-import failureAnimation from '../animations/error.json';
+//import failureAnimation from '../animations/error.json';
 import logo from '../assets/navbar/logo1.jpg';
 import {
   Box,
@@ -638,14 +638,12 @@ import {
   Input,
   Grid,
   GridItem,
-  Heading,
   Center,
   Text,
   FormControl,
   FormLabel,
   Radio,
   RadioGroup,
-  Checkbox,
   Stack,
   Select,
   useBreakpointValue,
@@ -692,15 +690,15 @@ export const RegisterPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleTrainingsCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      trainingsProvided: checked
-        ? [...prevData.trainingsProvided, value]
-        : prevData.trainingsProvided.filter((training) => training !== value),
-    }));
-  };
+  // const handleTrainingsCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { value, checked } = event.target;
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     trainingsProvided: checked
+  //       ? [...prevData.trainingsProvided, value]
+  //       : prevData.trainingsProvided.filter((training) => training !== value),
+  //   }));
+  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -718,7 +716,7 @@ export const RegisterPage = () => {
     }
   };
 
-  const trainingOptions = ['Schools', 'Colleges', 'Government Competitive Exams', 'NEET', 'Bank Exams'];
+  //const trainingOptions = ['Schools', 'Colleges', 'Government Competitive Exams', 'NEET', 'Bank Exams'];
 
   return (
     <Center height="100vh" p={4}>

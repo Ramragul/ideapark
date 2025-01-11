@@ -135,8 +135,8 @@
 
 
 
-import React from 'react';
-import { Box, Text, Button, Stack, CircularProgress, CircularProgressLabel, Flex } from '@chakra-ui/react';
+//import React from 'react';
+import { Box, Text, Button, Stack, CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
@@ -180,8 +180,8 @@ export const TestResultDetailsPage = () => {
             {percentage}%
           </Text>
           <CircularProgress
-            value={percentage}
-            color={percentage >= 50 ? 'green.400' : 'red.400'}
+            value={parseFloat(percentage)}
+            color={Number(percentage) >= 50 ? 'green.400' : 'red.400'}
             size="150px"
             thickness="10px"
             capIsRound
@@ -202,9 +202,12 @@ export const TestResultDetailsPage = () => {
           borderRadius="md" 
           fontWeight="bold"
           mb={4}
-          color={percentage >= 50 ? 'green.400' : 'red.400'}
+          //color={percentage >= 50 ? 'green.400' : 'red.400'}
+          color={Number(percentage) >= 50 ? 'green.400' : 'red.400'}
         >
-          {percentage >= 50 ? 'Great Job!' : 'Better Luck Next Time!'}
+          {/* {percentage >= 50 ? 'Great Job!' : 'Better Luck Next Time!'} */}
+          {Number(percentage) >= 50 ? 'Great Job!' : 'Better Luck Next Time!'}
+
         </Box>
 
         {/* Back Button */}

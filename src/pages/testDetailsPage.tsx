@@ -18,8 +18,7 @@ import {
     Card,
     CardBody,
     CardHeader,
-    IconButton,
-    Flex,
+    Flex
 } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { useLocation, useNavigate } from 'react-router-dom';

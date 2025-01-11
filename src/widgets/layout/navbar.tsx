@@ -1,12 +1,12 @@
 // Version 1  - Working Code
 
-import React, { useState } from 'react';
-import { FaRegUserCircle, FaShoppingCart } from 'react-icons/fa';
+import React from 'react';
+import { FaRegUserCircle } from 'react-icons/fa';
 import {
   Box, Flex, HStack, Link, IconButton, useDisclosure, Stack,
-  Badge, Button, Menu, MenuButton, MenuList, MenuItem, MenuDivider, Avatar, Select
+   Button, Menu, MenuButton, MenuList, MenuItem, MenuDivider, Avatar
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 //import { useCart } from '../../contexts/CartContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -15,14 +15,14 @@ import logo1 from '../../assets/navbar/logo1.jpg';
 //import FilterSelectComponent from '../../components/FilterSelectComponent';
  //import { keyframes } from '@chakra-ui/react';
 
-const cities = ["Chennai", "Coimbatore", "Trichy"];
+//const cities = ["Chennai", "Coimbatore", "Trichy"];
 
 const Navbar: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   //const { cartState } = useCart();
   const { authState, logout } = useAuth();
-  const [selectedCity, setSelectedCity] = useState("City");
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  //const [selectedCity, setSelectedCity] = useState("City");
+  //const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const navigate = useNavigate();
 
   //const cartLength = cartState.items.length;
@@ -30,9 +30,9 @@ const Navbar: React.FC = () => {
 
   console.log("User Role " +userRole)
 
-  const handleCitySelect = (city: string) => {
-    setSelectedCity(city);
-  };
+  // const handleCitySelect = (city: string) => {
+  //   setSelectedCity(city);
+  // };
 
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Flex, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 export const StudentHomePage: React.FC = () => {

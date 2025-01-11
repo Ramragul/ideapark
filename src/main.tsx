@@ -18,8 +18,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from '@chakra-ui/react';
-import { Provider } from "@/components/ui/provider"
-import theme from './theme';
+//import { Provider } from "@/components/ui/provider"
+//import theme from './theme';
 import { AuthProvider } from './contexts/AuthContext';
 
 // import { AuthProvider } from './contexts/AuthContext';

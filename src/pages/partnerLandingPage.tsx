@@ -3,7 +3,7 @@
 
 
 import React from "react";
-import { Box, Grid, GridItem, Heading, Text, Button, VStack } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Heading, Text, Button } from "@chakra-ui/react";
 
 import { useNavigate } from 'react-router-dom';
 

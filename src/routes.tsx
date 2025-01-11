@@ -1,17 +1,17 @@
 import {Home, TestCreationPage, ExamPage, LoginPage, RegisterPage, AboutUs,PartnerLandingPage,StudentTestDashboard, TestManagementPage, TestDetailsPage, TestResultPage,TestResultDetailsPage,TestStatsPage,StudentStatsPage,StudentStatsDetailsPage,StudentHomePage,StudentTestHomePage,FileFormatPage,ResetPasswordPage, VideoPlaybackPage, VideoUploadPage} from "./pages";
 import {
   HomeIcon,
-  UserCircleIcon,
-  ArrowRightOnRectangleIcon,
-  UserPlusIcon,
-  DocumentTextIcon,
-  NewspaperIcon,
-  UsersIcon,
+
+
+
+
+
+
   CheckBadgeIcon,
 } from "@heroicons/react/24/solid";
-import React from "react";
 
-import { FaSearch } from 'react-icons/fa';
+
+
 
 
 

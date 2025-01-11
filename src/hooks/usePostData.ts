@@ -44,10 +44,10 @@ interface PostResponse<T> {
     data: T;
 }
 
-interface ApiResponseData {
-    message: string;
-    // other properties that the API response data might have
-  }
+// interface ApiResponseData {
+//     message: string;
+//     // other properties that the API response data might have
+//   }
 
 interface ResponseData {
     message : string;

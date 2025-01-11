@@ -399,7 +399,7 @@ export const ResetPasswordPage: React.FC = () => {
   const { postData: resetPassword, responseData: resetPasswordResponse, isLoading: isResetting, error } = usePostData('/api/ip/reset/password');
 
 
-  const [loading, setLoading] = useState<boolean>(true);
+  //const [loading, setLoading] = useState<boolean>(true);
   const [animationType, setAnimationType] = useState<'success' | 'error' | 'loading' | null>(null);
   const [showAnimation, setShowAnimation] = useState(false);
 

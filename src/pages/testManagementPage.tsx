@@ -25,8 +25,8 @@
 
 import { useAuth } from '@/contexts/AuthContext';
 import useGetData from '@/hooks/useGetData';
-import React from 'react';
-import { Box, Button, Table, Thead, Tbody, Tr, Th, Td, Text, Spinner, VStack, Heading, useBreakpointValue, Flex, IconButton, useDisclosure } from '@chakra-ui/react';
+//import React from 'react';
+import { Box, Thead, Tbody, Tr, Th, Td, Text, Spinner, VStack, useBreakpointValue, IconButton, Table } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { EditIcon } from '@chakra-ui/icons';
 
@@ -35,7 +35,7 @@ export const TestManagementPage = () => {
     const { data, error, isLoading } = useGetData(authState.userId, `/api/ip/tests?created_by=${authState.userId}`);
     const navigate = useNavigate();
     const mobileView = useBreakpointValue({ base: true, md: false });
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    //const { isOpen, onOpen, onClose } = useDisclosure();
 
     if (isLoading) return <Spinner size="xl" color="pink.500" />;
     if (error) return <Text color="red.500">Error: {error}</Text>;

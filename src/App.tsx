@@ -39,7 +39,7 @@
 // Version 2
 
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
 //import Navbar from './widgets/layout/navbar';

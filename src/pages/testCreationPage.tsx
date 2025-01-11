@@ -772,20 +772,20 @@ export const TestCreationPage = () => {
   const [testCategory, setTestCategory] = useState('');
   const [testTimings, setTestTimings] = useState('');
   
-  const [testStudents, setTestStudents] = useState('');
+  //const [testStudents, setTestStudents] = useState('');
 
   const [testValidity, setTestValidity] = useState('');
   const [expiryDate, setExpiryDate] = useState<Date | null>(null);
 
 
-  const [loading, setLoading] = useState<boolean>(true);
+  //const [loading, setLoading] = useState<boolean>(true);
   const [animationType, setAnimationType] = useState<'success' | 'error' | 'loading' | null>(null);
   const [showAnimation, setShowAnimation] = useState(false);
 
   
 
   // Custom hook for posting data
-  const { postData, responseData, error, isLoading,data } = usePostData('/test/upload');
+  const { postData, responseData, error, isLoading } = usePostData('/test/upload');
 
   const {authState} = useAuth();
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -822,7 +822,8 @@ export const TestCreationPage = () => {
     formData.append('testDescription', testDescription);
     formData.append('testCategory', testCategory);
     formData.append('testTimings', testTimings);
-    formData.append('testValidity', expiryDate);
+    //formData.append('testValidity', expiryDate.toISOString());
+    formData.append('testValidity', expiryDate?.toISOString() ?? '');
     console.log("Test Validity " +expiryDate);
     //formData.append('testStudents', testStudents);
     //formData.append('createdBy',authState.userId);
@@ -1024,7 +1025,7 @@ export const TestCreationPage = () => {
       </Select>
 
       {testValidity === "Expiry" && (
-        <Box mt={4} bgcolor='green'>
+        <Box mt={4} bgColor='green'>
           {/* <DatePicker
             selected={expiryDate}
             onChange={(date) => setExpiryDate(date)}
@@ -1085,7 +1086,6 @@ export const TestCreationPage = () => {
             isLoading={isLoading}
             loadingText="Creating..."
             size="lg"
-            isFullWidth
             borderRadius="md"
             fontWeight="bold"
             _hover={{

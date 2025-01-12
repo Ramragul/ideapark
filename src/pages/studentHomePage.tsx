@@ -45,7 +45,7 @@ export const StudentHomePage: React.FC = () => {
           </Text>
         </Box>
 
-        {/* Tile for Lectures Page */}
+        {/* Tile for Lectures Videos */}
         <Box
           w={{ base: "100%", md: "45%" }}
           h="200px"
@@ -59,12 +59,34 @@ export const StudentHomePage: React.FC = () => {
           transition="transform 0.2s"
           _hover={{ transform: "scale(1.05)", bg: "purple.400" }}
           cursor="pointer"
-          onClick={() => navigate("/student/lecture")}
+          onClick={() => navigate("/lecture/videos")}
         >
           <Text fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold">
-            Lectures Page
+            Lectures Videos
           </Text>
         </Box>
+
+                {/* Tile for Lectures Documents */}
+                <Box
+          w={{ base: "100%", md: "45%" }}
+          h="200px"
+          bg="teal.500"
+          borderRadius="lg"
+          boxShadow="lg"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          transition="transform 0.2s"
+          _hover={{ transform: "scale(1.05)", bg: "purple.400" }}
+          cursor="pointer"
+          onClick={() => navigate("/lecture/documents")}
+        >
+          <Text fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold">
+            Lectures Documents
+          </Text>
+        </Box>
+
       </Flex>
     </Flex>
   );

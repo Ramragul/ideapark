@@ -124,8 +124,29 @@ export const PartnerLandingPage: React.FC = () => {
           <Text color="gray.500" mb={6}>
           Upload Lecture Videos in a simple steps
           </Text>
-          <Button bgColor="pink.700"  color="white" size="md" onClick= {()=> navigate('/video/upload')}>
+          <Button bgColor="pink.700"  color="white" size="md" onClick= {()=> navigate('/lecture/video/upload')}>
           Upload Video
+          </Button>
+        </GridItem>
+
+                {/* Lecture Document Uploads*/}
+
+                <GridItem
+          bg="white"
+          p={6}
+          shadow="md"
+          borderRadius="lg"
+          textAlign="center"
+          _hover={{ shadow: "lg", transform: "scale(1.02)", transition: "0.2s" }}
+        >
+          <Heading size="md" color="teal.700" mb={4}>
+          Lecture Document Upload
+          </Heading>
+          <Text color="gray.500" mb={6}>
+          Upload Lecture Videos in a simple steps
+          </Text>
+          <Button bgColor="teal.700"  color="white" size="md" onClick= {()=> navigate('/lecture/document/upload')}>
+          Upload Document
           </Button>
         </GridItem>
 

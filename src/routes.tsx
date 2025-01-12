@@ -1,4 +1,4 @@
-import {Home, TestCreationPage, ExamPage, LoginPage, RegisterPage, AboutUs,PartnerLandingPage,StudentTestDashboard, TestManagementPage, TestDetailsPage, TestResultPage,TestResultDetailsPage,TestStatsPage,StudentStatsPage,StudentStatsDetailsPage,StudentHomePage,StudentTestHomePage,FileFormatPage,ResetPasswordPage, VideoPlaybackPage, VideoUploadPage} from "./pages";
+import {Home, TestCreationPage, ExamPage, LoginPage, RegisterPage, AboutUs,PartnerLandingPage,StudentTestDashboard, TestManagementPage, TestDetailsPage, TestResultPage,TestResultDetailsPage,TestStatsPage,StudentStatsPage,StudentStatsDetailsPage,StudentHomePage,StudentTestHomePage,FileFormatPage,ResetPasswordPage, VideoPlaybackPage, VideoUploadPage,DocumentUploadPage,DocumentViewPage} from "./pages";
 import {
   HomeIcon,
 
@@ -157,15 +157,31 @@ export const routes = [
   {
     icon: CheckBadgeIcon,
     name: "VideoUploadPage",
-    path: "/video/upload",
+    path: "/lecture/video/upload",
     element: <VideoUploadPage />,
+    visible: false,
+  },
+
+  {
+    icon: CheckBadgeIcon,
+    name: "VideoPlaybackPage",
+    path: "/lecture/videos",
+    element: <VideoPlaybackPage />,
+    visible: false,
+  },
+
+  {
+    icon: CheckBadgeIcon,
+    name: "documentViewPage",
+    path: "/lecture/documents",
+    element: <DocumentViewPage />,
     visible: false,
   },
   {
     icon: CheckBadgeIcon,
-    name: "VideoPlaybackPage",
-    path: "student/lecture",
-    element: <VideoPlaybackPage />,
+    name: "documentUploadPage",
+    path: "/lecture/document/upload",
+    element: <DocumentUploadPage />,
     visible: false,
   },
   

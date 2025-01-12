@@ -19,3 +19,5 @@ export * from "./resetPasswordPage";
 export * from "./videoPlaybackPage";
 export * from "./videoUploadPage";
 export * from "./studentHomePage";
+export * from "./documentUploadPage";
+export * from "./documentViewPage";

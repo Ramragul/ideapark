@@ -1819,13 +1819,6 @@ import axios from 'axios';
 import { useAuth } from '@/contexts/AuthContext';
 
 
-interface Document {
-    id: string;
-    name: string;
-    subject: string;
-    document_url: string;
-  }
-
 export const DocumentViewPage: React.FC = () => {
   const [documents, setDocuments] = useState<any[]>([]);
   const [selectedDoc, setSelectedDoc] = useState<any | null>(null);
@@ -1929,7 +1922,7 @@ export const DocumentViewPage: React.FC = () => {
                 documents={groupedBySubject[subject]}
                 expanded={expandedSubjects.includes(subject)}
                 onSubjectClick={() => toggleSubject(subject)}
-                onDocumentClick={(doc) => {
+                onDocumentClick={(doc : any) => {
                   setSelectedDoc(doc);
                   onClose();  // Close the menu when a document is selected
                 }}
@@ -1976,7 +1969,7 @@ export const DocumentViewPage: React.FC = () => {
                     documents={groupedBySubject[subject]}
                     expanded={expandedSubjects.includes(subject)}
                     onSubjectClick={() => toggleSubject(subject)}
-                    onDocumentClick={(doc) => {
+                    onDocumentClick={(doc : any) => {
                       setSelectedDoc(doc);
                       onClose();  // Close the menu on selection
                     }}
@@ -2037,7 +2030,7 @@ const SubjectSection: React.FC<any> = ({ subject, documents, expanded, onSubject
       </HStack>
       <Collapse in={expanded}>
         <VStack align="stretch" spacing={2} pl={6} >
-          {documents.map((doc) => (
+          {documents.map((doc : any) => (
             <Button
               key={doc.id}
               variant="link"

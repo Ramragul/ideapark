@@ -631,7 +631,7 @@ import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import successAnimation from '../animations/successfulLogin.json';
 //import failureAnimation from '../animations/error.json';
-import logo from '../assets/navbar/logo1.jpg';
+import logo from '../assets/navbar/logo2.jpg';
 import {
   Box,
   Button,

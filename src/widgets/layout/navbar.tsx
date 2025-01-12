@@ -62,7 +62,7 @@ const Navbar: React.FC = () => {
               About Us
             </Link>
             <Box>
-              <img src={logo1} alt="Cotton Candy Logo" style={{ height: '70px' }} />
+              <img src={logo1} alt="Cotton Candy Logo" style={{ height: '50px' }} />
             </Box>
             <Link px={2} py={1} rounded="md" _hover={{ textDecoration: 'none', bg: 'pink.100' }} href="/businessPartnerForm">
             Partner With Us
@@ -88,7 +88,7 @@ const Navbar: React.FC = () => {
 
         <HStack display={{ lg: 'none' }} >
         <Box >
-        <img src={logo1} alt="Cotton Candy Logo" style={{ height: '70px' }} />
+        <img src={logo1} alt="Cotton Candy Logo" style={{ height: '50px' }} />
             </Box>
         </HStack> 
 

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import successAnimation from '../animations/successfulLogin.json';
 //import failureAnimation from '../animations/error.json';
-import logo from '../assets/navbar/logo1.jpg';
+import logo from '../assets/navbar/logo2.jpg';
 import {
   Box,
   Button,
@@ -36,7 +36,7 @@ export const LoginPage = () => {
       console.log("User Role" +user.userRole)
       const navigateURL = (user.userRole === "Business Partner") ? "/partner/home" : "/student/Home"
     
-      login(user.userName, user.userId, user.userEmail, user.pId , user.userRole); // Store the user ID and username
+      login(user.userName, user.userId, user.userEmail, user.pId , user.userRole, user.institute); // Store the user ID and username
       setSuccess(true);
       // setTimeout(() => navigate(-1), 5000); // Navigate to the previous page after 3 seconds
       setTimeout(() => navigate(navigateURL), 1500);

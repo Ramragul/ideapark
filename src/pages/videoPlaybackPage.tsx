@@ -152,6 +152,8 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 
+import { useAuth } from '@/contexts/AuthContext';
+
 interface Video {
   id: number;
   title: string;
@@ -164,13 +166,21 @@ export const VideoPlaybackPage: React.FC = () => {
   const [selectedVideoTitle, setSelectedVideoTitle] = useState<string>('');
   const [loading, setLoading] = useState(false);
 
+  const {authState} = useAuth();
+
+  console.log("Institue Value from Video Playback Page" +authState.institute);
+
   useEffect(() => {
     const fetchVideos = async () => {
       try {
         setLoading(true);
+        // const response = await axios.get(
+        //   'https://admee.in:3003/api/ip/partner/${authState.institute}/videos'
+        // );
         const response = await axios.get(
-          'https://admee.in:3003/api/ip/partner/36377/videos'
+          `https://admee.in:3003/api/ip/partner/${authState.institute}/videos`
         );
+        
         setVideos(response.data.videos || []); // Adjusting to match expected response structure
       } catch (error) {
         console.error('Error fetching videos:', error);
@@ -241,7 +251,7 @@ export const VideoPlaybackPage: React.FC = () => {
                 {selectedVideoTitle || 'Playing Video'}
               </Text>
               <Divider mb={4} />
-              <video controls width="100%" height="auto">
+              <video key={selectedVideo} controls width="100%" height="auto">
                 <source src={selectedVideo} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>

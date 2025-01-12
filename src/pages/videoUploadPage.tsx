@@ -247,7 +247,6 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import usePostData from '@/hooks/usePostData';

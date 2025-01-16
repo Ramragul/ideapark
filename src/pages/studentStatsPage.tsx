@@ -213,7 +213,7 @@ interface ApiResponse {
 
 export const StudentStatsPage: React.FC = () => {
   const { authState } = useAuth();
-  const { data, error, isLoading } = useGetData(authState.userId, `/api/ip/partner/${authState.userId}/students`);
+  const { data, error, isLoading } = useGetData(authState.userId, `/api/ip/partner/${authState.institute}/students`);
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const isMobileView = useBreakpointValue({ base: true, md: false });

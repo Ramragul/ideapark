@@ -55,6 +55,7 @@ export const DocumentUploadPage: React.FC = () => {
     formData.append('category', category);
     formData.append('description', description);
     formData.append('uploader_id', authState.userId || '');
+    formData.append('institute', authState.institute || '');
     formData.append('course_id', course);
     formData.append('subject', subject);
     //formData.append('category', category);

@@ -2478,9 +2478,467 @@
 
 
 
-// Version 11 : 9 is the working version
+// Version 11 : 9 is the working version 
 
 
+
+// import React, { useEffect, useRef, useState } from 'react';
+// import {
+//   Box,
+//   Button,
+//   Heading,
+//   Stack,
+//   Text,
+//   Spinner,
+//   Center,
+//   Radio,
+//   RadioGroup,
+//   Progress,
+// } from '@chakra-ui/react';
+// import { useAuth } from '@/contexts/AuthContext';
+// import { useNavigate, useLocation } from 'react-router-dom';
+// import usePostData from '../hooks/usePostData';
+// import successAnimation from '../animations/success.json';
+// import errorAnimation from '../animations/error.json';
+// import loadingAnimation from '../animations/loading.json';
+// import Lottie from 'lottie-react';
+// import axios from 'axios';
+
+// const isHTML = (string: string) => {
+//   const doc = new DOMParser().parseFromString(string, 'text/html');
+//   return Array.from(doc.body.childNodes).some((node) => node.nodeType === 1);
+// };
+
+// type Option = {
+//   optionId: number;
+//   questionId: number;
+//   option_text: string;
+//   is_correct: boolean;
+// };
+
+// type Question = {
+//   questionId: number;
+//   category: string;
+//   questionText: string;
+//   options: Option[];
+// };
+
+// type TestDetails = {
+//   testId: string;
+//   questions: Question[];
+// };
+
+// export const ExamPage: React.FC = () => {
+//   const [testDetails, setTestDetails] = useState<TestDetails | null>(null);
+//   const { state } = useLocation();
+//   const testID = state?.testId;
+//   //const testDuration = state?.testDuration;
+//   const testDuration = 0.25;
+//   const institute = state?.institute;
+//   const testName = state?.testName;
+
+//   const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: number }>({});
+//   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+//   const [loading, setLoading] = useState<boolean>(true);
+//   const [animationType, setAnimationType] = useState<'success' | 'error' | 'loading' | null>(null);
+//   const [showAnimation, setShowAnimation] = useState(false);
+//   const [remainingTime, setRemainingTime] = useState<number>(testDuration * 60); // Convert minutes to seconds
+
+//   const { postData, responseData, error } = usePostData('/ip/test/submit');
+//   const { authState } = useAuth();
+//   const navigate = useNavigate();
+
+//   //const isSubmitting = useRef(false);
+
+//    const isSubmittingFlag = useRef(false); // Flag to track manual submission
+//   //const isSubmittingTimeoutFlag = useRef(false); // Flag to track timeout submission
+
+// //   useEffect(() => {
+// //     const fetchTestDetails = async () => {
+// //       try {
+// //         const response = await axios.get(`https://admee.in:3003/api/ip/testDetails/${testID}`);
+// //         setTestDetails(response.data.data);
+// //       } catch (error) {
+// //         console.error('Error fetching test details:', error);
+// //       } finally {
+// //         setLoading(false);
+// //       }
+// //     };
+
+// //     fetchTestDetails();
+// //   }, [testID]);
+
+// // In the useEffect where testDetails are fetched
+// useEffect(() => {
+//     const fetchTestDetails = async () => {
+//       try {
+//         const response = await axios.get(`https://admee.in:3003/api/ip/testDetails/${testID}`);
+//         console.log("Test details fetched:", response.data.data); // Check if testDetails are fetched
+//         setTestDetails(response.data.data); // Update state with fetched test details
+//         localStorage.setItem('testDetails', JSON.stringify(response.data.data));
+//       } catch (error) {
+//         console.error('Error fetching test details:', error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+  
+//     fetchTestDetails();
+//   }, [testID]);
+
+//   useEffect(() => {
+//     const savedAnswers = localStorage.getItem('selectedAnswers');
+//     if (savedAnswers) {
+//       setSelectedAnswers(JSON.parse(savedAnswers));
+//     }
+//   }, []);
+
+//   useEffect(() => {
+//     if (responseData) {
+//       if (responseData.status === 201) {
+//         setAnimationType('success');
+//         setTimeout(() => {
+//           localStorage.removeItem('examData');
+//           localStorage.removeItem('selectedAnswers');
+//           navigate('/student/home');
+//         }, 3000);
+//       } else {
+//         setAnimationType('error');
+//       }
+//     } else if (error) {
+//       setAnimationType('error');
+//       setTimeout(() => {
+//         setShowAnimation(false);
+//         navigate('/exam');
+//       }, 3000);
+//     }
+//   }, [responseData, error, navigate]);
+
+
+
+//   const handleOptionChange = (questionId: number, value: string) => {
+//     //console.log("Test Details Inside handleOptionChange" +JSON.stringify(testDetails));
+//     const optionId = parseInt(value, 10);
+//     if (!isNaN(optionId)) {
+//       setSelectedAnswers((prev) => {
+//         const updatedAnswers = { ...prev, [questionId]: optionId };
+//         localStorage.setItem('selectedAnswers', JSON.stringify(updatedAnswers));
+//         return updatedAnswers;
+//       });
+//     }
+//   };
+
+//   const handleNext = () => {
+//     setCurrentQuestionIndex((prevIndex) => Math.min(prevIndex + 1, testDetails?.questions.length! - 1));
+//   };
+
+//   const handlePrevious = () => {
+//     setCurrentQuestionIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+//   };
+
+
+
+//   //const testDetailsRef = useRef();
+//   const testDetailsRef = useRef<TestDetails | null>(null);
+//  // const selectedAnswersRef = useRef();
+//   const selectedAnswersRef = useRef<{ [key: number]: number } | undefined>(undefined);
+
+//   useEffect(() => {
+//     testDetailsRef.current = testDetails; // Update the ref whenever testDetails changes
+//   }, [testDetails]);
+
+//   useEffect(() => {
+//     selectedAnswersRef.current = selectedAnswers; // Update the ref whenever testDetails changes
+//   }, [selectedAnswers]);
+    
+
+
+
+// // Timeout submission function triggered by useEffect
+// const handleTimeoutSubmit = async () => {
+//   if (isSubmittingFlag.current) {
+//     console.log("A submission is already in progress (timeout). Ignoring this call.");
+//     return; // Prevent duplicate submissions
+//   }
+
+//   isSubmittingFlag.current = true; // Lock the submission
+
+//   console.log("Submitting due to timeout...");
+
+//   if (!testDetailsRef.current || !testDetailsRef.current.questions.length) {
+//     console.log("Test details not available!");
+//     isSubmittingFlag.current = false; // Reset flag in case of error or no data
+//     return;
+//   }
+
+//   // const updatedSelectedAnswers = testDetailsRef.current.questions.reduce((acc, question) => {
+//   //   acc[question.questionId] = selectedAnswersRef.current?.[question.questionId] || 0;
+//   //   return acc;
+//   // }, {});
+
+//   const updatedSelectedAnswers = testDetailsRef.current.questions.reduce(
+//     (acc: { [key: number]: number }, question) => {
+//       acc[question.questionId] = selectedAnswersRef.current?.[question.questionId] || 0;
+//       return acc;
+//     },
+//     {} as { [key: number]: number } // Explicitly cast the initial value
+//   );
+
+//   const payload = {
+//     userID: authState.userId,
+//     testID: testID,
+//     selectedAnswers: updatedSelectedAnswers,
+//   };
+
+//   setShowAnimation(true);
+//   setAnimationType('loading');
+
+//   try {
+//     await postData(payload);
+//     console.log("Timeout submission successful");
+//   } catch (error) {
+//     console.error("Error during timeout submission:", error);
+//   } finally {
+//     isSubmittingFlag.current = false; // Release lock after submission
+//     setShowAnimation(false);
+//   }
+// };
+
+// // Button submit function triggered by button click
+// const handleSubmit = async () => {
+//   if (isSubmittingFlag.current) {
+//     console.log("A submission is already in progress (button). Ignoring this call.");
+//     return; // Prevent duplicate submissions
+//   }
+
+//   isSubmittingFlag.current = true; // Lock the submission
+
+//   console.log("Submitting through button handleSubmit...");
+
+//   const payload = {
+//     userID: authState.userId,
+//     testID: testID,
+//     // selectedAnswers: {
+//     //   ...testDetails?.questions.reduce((acc, question) => {
+//     //     acc[question.questionId] = selectedAnswers[question.questionId] || 0;
+//     //     return acc;
+//     //   }, {}),
+//     // },
+
+//     selectedAnswers: {
+//       ...testDetails?.questions.reduce<Record<number, number>>((acc, question) => {
+//         acc[question.questionId] = selectedAnswers[question.questionId] || 0;
+//         return acc;
+//       }, {}),
+//     },
+    
+//   };
+
+//   setShowAnimation(true);
+//   setAnimationType('loading');
+
+//   try {
+//     await postData(payload);
+//     console.log("Button submission successful");
+//   } catch (error) {
+//     console.error("Error during button submission:", error);
+//   } finally {
+//     isSubmittingFlag.current = false; // Release lock after submission
+//     setShowAnimation(false);
+//   }
+// };
+
+// // useEffect to trigger handleTimeoutSubmit after timeout
+// useEffect(() => {
+//   if (testDuration > 0) {
+//     const timer = setInterval(() => {
+//       setRemainingTime((prev) => {
+//         if (prev <= 1) {
+//           clearInterval(timer);
+//           handleTimeoutSubmit(); // Submit due to timeout
+//           return 0;
+//         }
+//         return prev - 1;
+//       });
+//     }, 1000);
+
+//     return () => clearInterval(timer);
+//   }
+// }, [testDuration]);
+
+  
+  
+  
+
+  
+
+//   const formatTime = (seconds: number) => {
+//     const mins = Math.floor(seconds / 60);
+//     const secs = seconds % 60;
+//     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+//   };
+
+//   if (loading) {
+//     return (
+//       <Center h="100vh">
+//         <Spinner size="xl" />
+//       </Center>
+//     );
+//   }
+
+//   if (!testDetails) {
+//     return (
+//       <Center h="100vh">
+//         <Text fontSize="lg">Failed to load test details. Please try again later.</Text>
+//       </Center>
+//     );
+//   }
+
+//   const currentQuestion = testDetails.questions[currentQuestionIndex];
+
+//   return (
+//     <Box className="examContainer">
+//       {showAnimation && (
+//         <Center>
+//           <Box
+//             position="fixed"
+//             top="50%"
+//             left="50%"
+//             transform="translate(-50%, -50%)"
+//             zIndex="1000"
+//             bg="rgba(0, 0, 0, 0.5)"
+//             display="flex"
+//             flexDirection="column"
+//             alignItems="center"
+//             justifyContent="center"
+//             width="100vw"
+//             height="100vh"
+//           >
+//             {animationType === 'loading' && (
+//               <Lottie
+//                 animationData={loadingAnimation}
+//                 loop={true}
+//                 autoplay={true}
+//                 style={{ width: '150px', height: '150px' }}
+//               />
+//             )}
+//             {animationType === 'success' && (
+//               <Box textAlign="center">
+//                 <Lottie animationData={successAnimation} loop={false} autoplay={true} />
+//                 <Text mt={4} fontSize="lg" color="white">
+//                   Exam has been submitted successfully!
+//                 </Text>
+//               </Box>
+//             )}
+//             {animationType === 'error' && (
+//               <Box textAlign="center">
+//                 <Lottie animationData={errorAnimation} loop={false} autoplay={true} />
+//                 <Text mt={4} fontSize="lg" color="white">
+//                   {error || 'An error occurred, please try again.'}
+//                 </Text>
+//               </Box>
+//             )}
+//           </Box>
+//         </Center>
+//       )}
+
+//       {!showAnimation && (
+//         <Box maxW={{ base: '95%', md: '80%', lg: '60%' }} mx="auto" py={10} px={4}>
+//           <Box textAlign="center" mb={6}>
+//             <Heading 
+//               fontSize={{ base: '2xl', md: '3xl' }} 
+//               color="purple.500" 
+//               fontWeight="bold"
+//               textTransform="uppercase"
+//               letterSpacing="wide"
+//               mb={2}
+//             >               {testName}
+//             </Heading>
+//             <Text fontSize={{ base: 'sm', md: 'md' }} color="gray.600">
+//               {institute}
+//             </Text>
+//             <Text mt={2} fontSize={{ base: 'sm', md: 'md' }} color="purple.600">
+//               Time Remaining: {formatTime(remainingTime)}
+//             </Text>
+//             <Progress
+//               mt={4}
+//               value={(currentQuestionIndex + 1) / testDetails.questions.length * 100}
+//               colorScheme="purple"
+//               size="sm"
+//               borderRadius="md"
+//             />
+//           </Box>
+
+//           <Box mb={8} bg="gray.100" p={6} rounded="md" shadow="md">
+//             <Text fontSize="lg" fontWeight="bold" mb={4}>
+//               Question {currentQuestionIndex + 1}/{testDetails.questions.length}
+//             </Text>
+//             {/* <Box
+//               dangerouslySetInnerHTML={
+//                 isHTML(currentQuestion.questionText)
+//                   ? { __html: currentQuestion.questionText }
+//                   : undefined
+//               }
+//             >
+//               {!isHTML(currentQuestion.questionText) && (
+//                 <Text fontSize="md">{currentQuestion.questionText}</Text>
+//               )}
+//             </Box> */}
+            
+//             /             {/* Render question text based on whether it contains HTML */}
+//             {isHTML(currentQuestion.questionText) ? (
+//               <div
+//                 dangerouslySetInnerHTML={{ __html: currentQuestion.questionText }}
+//               />
+//             ) : (
+//               <Text fontSize="lg" mb={4} fontWeight="bold" color="gray.700">
+//                 {currentQuestion.questionText}
+//               </Text>
+//             )} 
+
+//             <RadioGroup
+//               mt={4}
+//               value={selectedAnswers[currentQuestion.questionId]?.toString() || ''}
+//               onChange={(value) => handleOptionChange(currentQuestion.questionId, value)}
+//             >
+//               <Stack direction="column" spacing={3}>
+//                 {currentQuestion.options.map((option) => (
+//                   <Radio
+//                     key={option.optionId}
+//                     value={option.optionId.toString()}
+//                     colorScheme="purple"
+//                   >
+//                     {option.option_text}
+//                   </Radio>
+//                 ))}
+//               </Stack>
+//             </RadioGroup>
+//           </Box>
+
+//           <Stack direction="row" justifyContent="space-between">
+//             <Button
+//               colorScheme="gray"
+//               variant="outline"
+//               onClick={handlePrevious}
+//               isDisabled={currentQuestionIndex === 0}
+//             >
+//               Previous
+//             </Button>
+//             <Button
+//               colorScheme="purple"
+//               onClick={currentQuestionIndex + 1 === testDetails.questions.length ? handleSubmit : handleNext}
+//             >
+//               {currentQuestionIndex + 1 === testDetails.questions.length ? 'Submit' : 'Next'}
+//             </Button>
+//           </Stack>
+//         </Box>
+//       )}
+//     </Box>
+//   );
+// };
+
+
+// Version 11 : Clone of 10
 
 import React, { useEffect, useRef, useState } from 'react';
 import {
@@ -2548,27 +3006,9 @@ export const ExamPage: React.FC = () => {
   const { authState } = useAuth();
   const navigate = useNavigate();
 
-  //const isSubmitting = useRef(false);
 
    const isSubmittingFlag = useRef(false); // Flag to track manual submission
-  //const isSubmittingTimeoutFlag = useRef(false); // Flag to track timeout submission
 
-//   useEffect(() => {
-//     const fetchTestDetails = async () => {
-//       try {
-//         const response = await axios.get(`https://admee.in:3003/api/ip/testDetails/${testID}`);
-//         setTestDetails(response.data.data);
-//       } catch (error) {
-//         console.error('Error fetching test details:', error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchTestDetails();
-//   }, [testID]);
-
-// In the useEffect where testDetails are fetched
 useEffect(() => {
     const fetchTestDetails = async () => {
       try {
@@ -2636,55 +3076,7 @@ useEffect(() => {
     setCurrentQuestionIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
-  // const handleSubmit = async () => {
-  //  // console.log("TestDetails in handle Submit Button CLICK:", JSON.stringify(testDetailsRef.current)); 
-  //   if (!acquireLock()) {
-  //     console.log("Submission already in progress. Ignoring this call.");
-  //     return; // Prevent duplicate submissions
-  //   }
-  
-  //   isSubmitting.current = true; // Lock submission
-  
-  //  // console.log("Selected Answers button function :" +JSON.stringify(selectedAnswers))
-  //   const payload = {
-  //     userID: authState.userId,
-  //     testID: testID,
-  //     selectedAnswers: {
-  //       ...testDetails?.questions.reduce((acc, question) => {
-  //         acc[question.questionId] = selectedAnswers[question.questionId] || 0; // Default unattempted to 0
-  //         return acc;
-  //       }, {}),
-  //     },
-  //   };
 
-
-
-  //   setShowAnimation(true);
-  //   setAnimationType('loading');
-  //   await postData(payload);
-  //  releaseLock();
-  // };
-
-
-
-  
-  // useEffect(() => {
-  //   if (testDuration > 0) {
-  //     const timer = setInterval(() => {
-  //       setRemainingTime((prev) => {
-  //         if (prev <= 1) {
-  //           clearInterval(timer);
-  //           handleTimeoutSubmit(true); // Submit due to timeout
-  //           //handleSubmit();
-  //           return 0;
-  //         }
-  //         return prev - 1;
-  //       });
-  //     }, 1000);
-  
-  //     return () => clearInterval(timer);
-  //   }
-  // }, [testDuration]);
 
   //const testDetailsRef = useRef();
   const testDetailsRef = useRef<TestDetails | null>(null);
@@ -2704,12 +3096,18 @@ useEffect(() => {
 
 // Timeout submission function triggered by useEffect
 const handleTimeoutSubmit = async () => {
+ 
+  console.log("Handle Timeout Submit 77 is called ");
+
   if (isSubmittingFlag.current) {
     console.log("A submission is already in progress (timeout). Ignoring this call.");
     return; // Prevent duplicate submissions
   }
 
   isSubmittingFlag.current = true; // Lock the submission
+
+  // setShowAnimation(true);
+  // setAnimationType('loading');
 
   console.log("Submitting due to timeout...");
 
@@ -2719,10 +3117,7 @@ const handleTimeoutSubmit = async () => {
     return;
   }
 
-  // const updatedSelectedAnswers = testDetailsRef.current.questions.reduce((acc, question) => {
-  //   acc[question.questionId] = selectedAnswersRef.current?.[question.questionId] || 0;
-  //   return acc;
-  // }, {});
+
 
   const updatedSelectedAnswers = testDetailsRef.current.questions.reduce(
     (acc: { [key: number]: number }, question) => {
@@ -2738,17 +3133,18 @@ const handleTimeoutSubmit = async () => {
     selectedAnswers: updatedSelectedAnswers,
   };
 
+
   setShowAnimation(true);
   setAnimationType('loading');
-
   try {
+
     await postData(payload);
     console.log("Timeout submission successful");
   } catch (error) {
     console.error("Error during timeout submission:", error);
   } finally {
     isSubmittingFlag.current = false; // Release lock after submission
-    setShowAnimation(false);
+    //setShowAnimation(false);
   }
 };
 
@@ -2766,12 +3162,7 @@ const handleSubmit = async () => {
   const payload = {
     userID: authState.userId,
     testID: testID,
-    // selectedAnswers: {
-    //   ...testDetails?.questions.reduce((acc, question) => {
-    //     acc[question.questionId] = selectedAnswers[question.questionId] || 0;
-    //     return acc;
-    //   }, {}),
-    // },
+
 
     selectedAnswers: {
       ...testDetails?.questions.reduce<Record<number, number>>((acc, question) => {
@@ -2792,27 +3183,82 @@ const handleSubmit = async () => {
     console.error("Error during button submission:", error);
   } finally {
     isSubmittingFlag.current = false; // Release lock after submission
-    setShowAnimation(false);
+   // setShowAnimation(false);
   }
 };
 
 // useEffect to trigger handleTimeoutSubmit after timeout
+// useEffect(() => {
+//   if (testDuration > 0) {
+//     const timer = setInterval(() => {
+//       setRemainingTime((prev) => {
+//         if (prev <= 1) {
+//           clearInterval(timer);
+//           handleTimeoutSubmit(); // Submit due to timeout
+//           return 0;
+//         }
+//         return prev - 1;
+//       });
+//     }, 1000);
+
+//     return () => clearInterval(timer);
+// }, [testDuration]);
+
+
 useEffect(() => {
   if (testDuration > 0) {
+    // Check if there's a saved timer in localStorage
+    const savedTime = localStorage.getItem(`remainingTime_${testID}`);
+    const lastSavedTimestamp = localStorage.getItem(`timestamp_${testID}`);
+
+    if (savedTime && lastSavedTimestamp) {
+      // Calculate elapsed time
+      const elapsedTime = Math.floor((Date.now() - parseInt(lastSavedTimestamp, 10)) / 1000);
+      const remaining = Math.max(0, parseInt(savedTime, 10) - elapsedTime);
+      setRemainingTime(remaining);
+
+      if (remaining === 0) {
+        localStorage.removeItem(`remainingTime_${testID}`);
+        localStorage.removeItem(`timestamp_${testID}`);
+
+        //handleTimeoutSubmit();
+        
+        return;
+      }
+    } else {
+      setRemainingTime(testDuration * 60); // Initialize timer if not in storage
+    }
+
     const timer = setInterval(() => {
       setRemainingTime((prev) => {
-        if (prev <= 1) {
+        const newTime = prev - 1;
+
+        if (newTime <= 0) {
           clearInterval(timer);
-          handleTimeoutSubmit(); // Submit due to timeout
+          localStorage.removeItem(`remainingTime_${testID}`);
+          localStorage.removeItem(`timestamp_${testID}`);
+
+          
+          setShowAnimation(true);
+          setAnimationType('loading');
+          handleTimeoutSubmit();
+
           return 0;
         }
-        return prev - 1;
+
+        // Save the new remaining time and current timestamp
+        localStorage.setItem(`remainingTime_${testID}`, newTime.toString());
+        localStorage.setItem(`timestamp_${testID}`, Date.now().toString());
+
+        return newTime;
       });
     }, 1000);
 
     return () => clearInterval(timer);
   }
+// }, [testDuration, testID, handleTimeoutSubmit]);
 }, [testDuration]);
+
 
   
   
@@ -2921,19 +3367,7 @@ useEffect(() => {
             <Text fontSize="lg" fontWeight="bold" mb={4}>
               Question {currentQuestionIndex + 1}/{testDetails.questions.length}
             </Text>
-            {/* <Box
-              dangerouslySetInnerHTML={
-                isHTML(currentQuestion.questionText)
-                  ? { __html: currentQuestion.questionText }
-                  : undefined
-              }
-            >
-              {!isHTML(currentQuestion.questionText) && (
-                <Text fontSize="md">{currentQuestion.questionText}</Text>
-              )}
-            </Box> */}
-            
-            /             {/* Render question text based on whether it contains HTML */}
+
             {isHTML(currentQuestion.questionText) ? (
               <div
                 dangerouslySetInnerHTML={{ __html: currentQuestion.questionText }}

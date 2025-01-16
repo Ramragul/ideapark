@@ -18,7 +18,8 @@ import {
     Card,
     CardBody,
     CardHeader,
-    Flex
+    Flex,
+    Select
 } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -52,6 +53,7 @@ export const TestDetailsPage = () => {
                 testTimings: testData.timings,
                 testValidity: testData.validity,
                 modifiedBy: authState.userId,
+                testStatus : testData.status,
             });
 
             toast({
@@ -167,7 +169,7 @@ export const TestDetailsPage = () => {
 
 
             <Card mb={6} shadow="lg">
-                <CardHeader bg="teal.500" color="white" py={4} px={6} borderTopRadius="md">
+                <CardHeader bg="purple.500" color="white" py={4} px={6} borderTopRadius="md">
                     <Heading size="md">Edit Test Details</Heading>
                 </CardHeader>
                 <CardBody>
@@ -199,8 +201,37 @@ export const TestDetailsPage = () => {
                             />
                         </FormControl>
 
+                        {/* <FormControl>
+                        <FormLabel htmlFor="test-status">Test Status</FormLabel>
+                        <Select
+                            id="status"
+                            value={testData.status || "active"} // Default to "active" if status is undefined
+                            onChange={(e) => setTestData({ ...testData, status: e.target.value })}
+                        >
+                            <option value="active">Active</option>
+                            <option value="terminated">Delete</option>
+                        </Select>
+                        </FormControl> */}
+
+                        <FormControl>
+                        <FormLabel htmlFor="test-status">Test Status</FormLabel>
+                        <Select
+                            id="status"
+                            value={testData.status || "active"} // Default to "active" if status is undefined
+                            onChange={(e) => setTestData({ ...testData, status: e.target.value })}
+                            bg={testData.status === "terminated" ? "red.500" : "green.500"} // Conditional background color
+                            color={testData.status === "terminated" ? "white" : "white"} // Conditional text color
+                            borderColor={testData.status === "terminated" ? "red" : "green"} // Conditional border color
+                        >
+                            <option value="active">Active</option>
+                            <option value="terminated">Terminated</option>
+                        </Select>
+                        </FormControl>
+
+
+
                         <Button
-                            colorScheme="teal"
+                            colorScheme="purple"
                             onClick={handleUpdateDetails}
                             isLoading={isUpdating}
                             loadingText="Updating..."

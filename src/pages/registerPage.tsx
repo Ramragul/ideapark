@@ -8,404 +8,27 @@
 // import { useNavigate } from 'react-router-dom';
 // import Lottie from 'lottie-react';
 // import successAnimation from '../animations/successfulLogin.json';
-// import failureAnimation from '../animations/error.json';
-// import logo from '../assets/navbar/logo1.jpg';
+// //import failureAnimation from '../animations/error.json';
+// import logo from '../assets/navbar/logo2.jpg';
+// import useGetList , {list}from '@/hooks/useGetList';
 // import {
 //   Box,
 //   Button,
 //   Input,
-
-//   Stack,
-//   Heading,
-//   Center,
-
-//   Text,
-// } from '@chakra-ui/react';
-
-// import { FormControl , FormLabel} from '@chakra-ui/form-control';
-
-// export const RegisterPage = () => {
-//   const [formData, setFormData] = useState({
-//     name: '',
-//     mobile: '',
-//     email: '',
-//     address: '',
-//     city: '',
-//     password: '',
-//   });
-//   const [success, setSuccess] = useState(false);
-//   const [error, setError] = useState('');
-//   const navigate = useNavigate();
-  
-
-//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-
-//     try {
-//       const response = await axios.post('https://admee.in:3003/api/cc/register', formData);
-//       console.log("Response From DB For Duplicate Error" +JSON.stringify(response))
-//       if(response.status!=205)
-//       {
-//         setSuccess(true);
-//         setTimeout(() => navigate('/login'), 5000); // Redirect to login page after 3 seconds
-//       }
-//       else {
-//        // setError('')
-//         //setError('Registration failed. Mobile Number Already Registered with Another Account' +error);
-//         // toast({
-//         //   title: 'Registration failed.',
-//         //   description: 'Duplicate User . Mobile Number Already Registered with Another Account',
-//         //   status: 'error',
-//         //   duration: 5000,
-//         //   isClosable: true,
-//         // });
-//       }
-//     } catch (error) {
-//       setError('Registration failed. Please try again.');
-//       console.log("Error from The Server DB" +error)
-//       toast({
-//         title: 'Registration failed.',
-//         description: 'Please try again.',
-//         status: 'error',
-//         duration: 5000,
-//         isClosable: true,
-//       });
-//     }
-//   };
-
-//   return (
-//     <Center height="100vh" p={4}>
-//       <Box
-//         maxW="lg"
-//         width="full"
-//         borderWidth="1px"
-//         borderRadius="lg"
-//         overflow="hidden"
-//         p={6}
-//         boxShadow="lg"
-//         textAlign="center"
-//       >
-//         <img src={logo} alt="Logo" style={{ margin: '0 auto 20px', height: '50px' }} />
-//         <Heading mb={6}>Register</Heading>
-//         {success ? (<>
-//           <Lottie animationData={successAnimation} style={{ height: '200px' }} />
-//           Successfully Registered
-//           </>
-//         ) : (
-//           <form onSubmit={handleSubmit}>
-//             <FormControl id="name" mb={4}>
-//               <FormLabel>Name</FormLabel>
-//               <Input
-//                 type="text"
-//                 name="name"
-//                 value={formData.name}
-//                 onChange={handleChange}
-                
-//               />
-//             </FormControl>
-//             <FormControl id="mobile" mb={4}>
-//               <FormLabel>Mobile Number</FormLabel>
-//               <Input
-//                 type="text"
-//                 name="mobile"
-//                 value={formData.mobile}
-//                 onChange={handleChange}
-//                 required
-//               />
-//             </FormControl>
-//             <FormControl id="email" mb={4}>
-//               <FormLabel>Email</FormLabel>
-//               <Input
-//                 type="email"
-//                 name="email"
-//                 value={formData.email}
-//                 onChange={handleChange}
-                
-//               />
-//             </FormControl>
-//             <FormControl id="address" mb={4}>
-//               <FormLabel>Address</FormLabel>
-//               <Input
-//                 type="text"
-//                 name="address"
-//                 value={formData.address}
-//                 onChange={handleChange}
-//                 required
-//               />
-//             </FormControl>
-//             <FormControl id="city" mb={4}>
-//               <FormLabel>City</FormLabel>
-//               <Input
-//                 type="text"
-//                 name="city"
-//                 value={formData.city}
-//                 onChange={handleChange}
-//                 required
-//               />
-//             </FormControl>
-//             <FormControl id="password" mb={6}>
-//               <FormLabel>Password</FormLabel>
-//               <Input
-//                 type="password"
-//                 name="password"
-//                 value={formData.password}
-//                 onChange={handleChange}
-//                 required
-//               />
-//             </FormControl>
-//             <Button type="submit" colorScheme="pink" width="full" mb={4}>
-//               Register
-//             </Button>
-//             {error && <Text color="red.500">{error}</Text>}
-//           </form>
-//         )}
-//       </Box>
-//     </Center>
-//   );
-// };
-
-// export default RegisterPage;
-
-
-// Version 2 - To handle both candidate and business partner registrations
-
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
-// import Lottie from 'lottie-react';
-// import successAnimation from '../animations/successfulLogin.json';
-// import failureAnimation from '../animations/error.json';
-// import logo from '../assets/navbar/logo1.jpg';
-// import {
-//   Box,
-//   Button,
-//   Input,
-//   Stack,
-//   Heading,
+//   Grid,
+//   GridItem,
 //   Center,
 //   Text,
 //   FormControl,
 //   FormLabel,
 //   Radio,
 //   RadioGroup,
-//   Checkbox,
-//   CheckboxGroup,
-// } from '@chakra-ui/react';
-
-// //import { FormControl , FormLabel} from '@chakra-ui/form-control';
-
-
-
-// export const RegisterPage = () => {
-//   const [formData, setFormData] = useState({
-//     name: '',
-//     mobile: '',
-//     email: '',
-//     address: '',
-//     city: '',
-//     password: '',
-//     userType: 'Candidate', // Default selection
-//     academicQualifications: '',
-//     instituteDetails: '',
-//     businessName: '',
-//     trainingsProvided: '',
-//   });
-//   const [success, setSuccess] = useState(false);
-//   const [error, setError] = useState('');
-//   const navigate = useNavigate();
-
-//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleCheckboxChange = (selectedValues: string[]) => {
-//     setFormData({ ...formData, trainingsProvided: selectedValues.join(', ') });
-//   };
-
-  
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-
-//     try {
-//       const response = await axios.post('https://admee.in:3003/api/cc/register', formData);
-//       console.log('Response From DB For Duplicate Error' + JSON.stringify(response));
-//       if (response.status !== 205) {
-//         setSuccess(true);
-//         setTimeout(() => navigate('/login'), 5000);
-//       } else {
-//         setError('Mobile Number Already Registered with Another Account');
-//       }
-//     } catch (error) {
-//       setError('Registration failed. Please try again.');
-//       console.log('Error from The Server DB' + error);
-//     }
-//   };
-
-//   return (
-//     <Center height="100vh" p={4}>
-//       <Box
-//         maxW="lg"
-//         width="full"
-//         borderWidth="1px"
-//         borderRadius="lg"
-//         overflow="hidden"
-//         p={6}
-//         boxShadow="lg"
-//         textAlign="center"
-//       >
-//         <img src={logo} alt="Logo" style={{ margin: '0 auto 20px', height: '50px' }} />
-//         <Heading mb={6}>Register</Heading>
-//         <RadioGroup
-//           onChange={(value) => setFormData({ ...formData, userType: value })}
-//           value={formData.userType}
-//           mb={6}
-//         >
-//           <Stack direction="row" justifyContent="center">
-//             <Radio value="Candidate">Candidate</Radio>
-//             <Radio value="Business Partner">Business Partner</Radio>
-//           </Stack>
-//         </RadioGroup>
-
-//         {success ? (
-//           <>
-//             <Lottie animationData={successAnimation} style={{ height: '200px' }} />
-//             Successfully Registered
-//           </>
-//         ) : (
-//           <form onSubmit={handleSubmit}>
-//             <FormControl id="name" mb={4}>
-//               <FormLabel>Name</FormLabel>
-//               <Input type="text" name="name" value={formData.name} onChange={handleChange} />
-//             </FormControl>
-//             <FormControl id="mobile" mb={4}>
-//               <FormLabel>Mobile Number</FormLabel>
-//               <Input type="text" name="mobile" value={formData.mobile} onChange={handleChange} />
-//             </FormControl>
-//             <FormControl id="email" mb={4}>
-//               <FormLabel>Email</FormLabel>
-//               <Input type="email" name="email" value={formData.email} onChange={handleChange} />
-//             </FormControl>
-//             <FormControl id="address" mb={4}>
-//               <FormLabel>Address</FormLabel>
-//               <Input type="text" name="address" value={formData.address} onChange={handleChange} />
-//             </FormControl>
-//             <FormControl id="city" mb={4}>
-//               <FormLabel>City</FormLabel>
-//               <Input type="text" name="city" value={formData.city} onChange={handleChange} />
-//             </FormControl>
-//             <FormControl id="password" mb={6}>
-//               <FormLabel>Password</FormLabel>
-//               <Input
-//                 type="password"
-//                 name="password"
-//                 value={formData.password}
-//                 onChange={handleChange}
-//               />
-//             </FormControl>
-
-//             {formData.userType === 'Candidate' && (
-//               <>
-//                 <FormControl id="academicQualifications" mb={4}>
-//                   <FormLabel>Highest Academic Qualifications</FormLabel>
-//                   <Input
-//                     type="text"
-//                     name="academicQualifications"
-//                     value={formData.academicQualifications}
-//                     onChange={handleChange}
-//                   />
-//                 </FormControl>
-//                 <FormControl id="instituteDetails" mb={4}>
-//                   <FormLabel>Academic Institute Details</FormLabel>
-//                   <Input
-//                     type="text"
-//                     name="instituteDetails"
-//                     value={formData.instituteDetails}
-//                     onChange={handleChange}
-//                   />
-//                 </FormControl>
-//               </>
-//             )}
-
-//             {formData.userType === 'Business Partner' && (
-//               <>
-//                 <FormControl id="businessName" mb={4}>
-//                   <FormLabel>Business Name</FormLabel>
-//                   <Input
-//                     type="text"
-//                     name="businessName"
-//                     value={formData.businessName}
-//                     onChange={handleChange}
-//                   />
-//                 </FormControl>
-//                 <FormControl id="trainingsProvided" mb={6}>
-//                   <FormLabel>Types of Trainings Provided</FormLabel>
-//                   <CheckboxGroup onChange={handleCheckboxChange}>
-//                     <Stack spacing={2}>
-//                       <Checkbox value="Schools">Schools</Checkbox>
-//                       <Checkbox value="Colleges">Colleges</Checkbox>
-//                       <Checkbox value="Government Competitive Exams">
-//                         Government Competitive Exams
-//                       </Checkbox>
-//                       <Checkbox value="NEET">NEET</Checkbox>
-//                       <Checkbox value="Bank Exams">Bank Exams</Checkbox>
-//                     </Stack>
-//                   </CheckboxGroup>
-//                 </FormControl>
-//               </>
-//             )}
-
-//             <Button type="submit" colorScheme="pink" width="full" mb={4}>
-//               Register
-//             </Button>
-//             {error && <Text color="red.500">{error}</Text>}
-//           </form>
-//         )}
-//       </Box>
-//     </Center>
-//   );
-// };
-
-// export default RegisterPage;
-
-
-
-
-// Version 3 - Working Version
-
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
-// import Lottie from 'lottie-react';
-// import successAnimation from '../animations/successfulLogin.json';
-// import failureAnimation from '../animations/error.json';
-// import logo from '../assets/navbar/logo1.jpg';
-// import {
-//   Box,
-//   Button,
-//   Input,
 //   Stack,
-//   Heading,
-//   Center,
-//   Text,
-//   FormControl,
-//   FormLabel,
-//   Radio,
-//   RadioGroup,
-//   Checkbox,
-//   CheckboxGroup,
 //   Select,
+//   useBreakpointValue,
 // } from '@chakra-ui/react';
 
-
-
-
 // export const RegisterPage = () => {
-
 //   interface FormData {
 //     name: string;
 //     mobile: string;
@@ -419,7 +42,7 @@
 //     institute: string;
 //     businessName: string;
 //     businessType: string;
-//     trainingsProvided: string[]; // Explicitly type as an array of strings
+//     trainingsProvided: string[];
 //   }
 
 //   const [formData, setFormData] = useState<FormData>({
@@ -435,35 +58,35 @@
 //     institute: '',
 //     businessName: '',
 //     businessType: '',
-//     trainingsProvided: [], // Array for storing selected trainings
+//     trainingsProvided: [],
 //   });
 
 //   const [success, setSuccess] = useState(false);
 //   const [error, setError] = useState('');
 //   const navigate = useNavigate();
 
-//   // Handle text input changes
-//   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//   const { data, isLoading } = useGetList(`/api/ip/institute/lists`);
+
+//   console.log("Response Received from Backend Institute Api " +JSON.stringify(data) )
+
+
+
+//   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 //     setFormData({ ...formData, [e.target.name]: e.target.value });
 //   };
 
-//   //Handle checkbox changes
-//   const handleTrainingsCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     const { value, checked } = event.target;
-//     setFormData((prevData) => ({
-//       ...prevData,
-//       trainingsProvided: checked
-//         ? [...prevData.trainingsProvided, value] // Add to array if checked
-//         : prevData.trainingsProvided.filter((training) => training !== value), // Remove if unchecked
-//     }));
-//   };
+//   // const handleTrainingsCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//   //   const { value, checked } = event.target;
+//   //   setFormData((prevData) => ({
+//   //     ...prevData,
+//   //     trainingsProvided: checked
+//   //       ? [...prevData.trainingsProvided, value]
+//   //       : prevData.trainingsProvided.filter((training) => training !== value),
+//   //   }));
+//   // };
+
 //   const handleSubmit = async (e: React.FormEvent) => {
 //     e.preventDefault();
-
-//     for (let [key, value] of Object.entries(formData)) {
-//       console.log(key, value);
-//     }
-    
 
 //     try {
 //       const response = await axios.post('https://admee.in:3003/api/ip/register', formData);
@@ -478,81 +101,94 @@
 //     }
 //   };
 
-//   const trainingOptions = ['Schools', 'Colleges', 'Government Competitive Exams', 'NEET', 'Bank Exams'];
+//   //const trainingOptions = ['Schools', 'Colleges', 'Government Competitive Exams', 'NEET', 'Bank Exams'];
 
 //   return (
 //     <Center height="100vh" p={4}>
 //       <Box
-//         maxW={{ base: '90%', md: 'lg' }}
-//         width="full"
+//         maxW={{ base: '95%', md: '600px' }}
+//         w="full"
 //         borderWidth="1px"
 //         borderRadius="lg"
 //         overflow="hidden"
 //         p={6}
 //         boxShadow="lg"
-//         textAlign="center"
+//         bg="white"
 //       >
-//         <img src={logo} alt="Logo" style={{ margin: '0 auto 20px', height: '50px' }} />
-//         <Heading mb={6}>Register</Heading>
+//         <Center mb={4}>
+//           <img src={logo} alt="Logo" style={{ height: useBreakpointValue({ base: '40px', md: '175px' }) }} />
+//         </Center>
+//         {/* <Heading size={useBreakpointValue({ base: 'md', md: 'lg' })} textAlign="center" mb={6}>
+//           Register
+//         </Heading> */}
+
 //         <RadioGroup
 //           onChange={(value) => setFormData({ ...formData, userType: value })}
 //           value={formData.userType}
 //           mb={6}
 //         >
-//           <Stack direction={{ base: 'column', md: 'row' }} justifyContent="center">
+//           <Stack direction="row" justify="center" spacing={6}>
 //             <Radio value="Candidate">Candidate</Radio>
 //             <Radio value="Business Partner">Business Partner</Radio>
 //           </Stack>
 //         </RadioGroup>
 
 //         {success ? (
-//           <>
+//           <Center flexDirection="column">
 //             <Lottie animationData={successAnimation} style={{ height: '200px' }} />
-//             Successfully Registered
-//           </>
+//             <Text mt={4} fontSize="lg" fontWeight="bold" color="green.500">
+//               Successfully Registered
+//             </Text>
+//           </Center>
 //         ) : (
 //           <form onSubmit={handleSubmit}>
-//             <FormControl id="name" mb={4}>
-//               <FormLabel>Name</FormLabel>
-//               <Input type="text" name="name" value={formData.name} onChange={handleChange} />
-//             </FormControl>
-//             {formData.userType === 'Candidate' && (
-//             <FormControl id="qualifications" mb={4}>
-//               <FormLabel>Highest Qualification</FormLabel>
-//               <Input type="text" name="qualifications" value={formData.qualifications} onChange={handleChange} />
-//             </FormControl> 
-//             )}
-//             {formData.userType === 'Candidate' && (
-//             <FormControl id="institute" mb={4}>
-//               <FormLabel>Institute</FormLabel>
-//               <Input type="text" name="institute" value={formData.institute} onChange={handleChange} />
-//             </FormControl> 
-//             )}
-//             <FormControl id="mobile" mb={4}>
-//               <FormLabel>Mobile Number</FormLabel>
-//               <Input type="text" name="mobile" value={formData.mobile} onChange={handleChange} />
-//             </FormControl>
-//             <FormControl id="email" mb={4}>
-//               <FormLabel>Email</FormLabel>
-//               <Input type="email" name="email" value={formData.email} onChange={handleChange} />
-//             </FormControl>
-//             <FormControl id="address" mb={4}>
-//               <FormLabel>Address</FormLabel>
-//               <Input type="text" name="address" value={formData.address} onChange={handleChange} />
-//             </FormControl>
-//             <FormControl id="city" mb={4}>
-//               <FormLabel>City</FormLabel>
-//               <Input type="text" name="city" value={formData.city} onChange={handleChange} />
-//             </FormControl>
-//             <FormControl id="pincode" mb={4}>
-//               <FormLabel>Pincode</FormLabel>
-//               <Input type="text" name="pincode" value={formData.pincode} onChange={handleChange} />
-//             </FormControl>
+//             <Grid templateColumns={{ base: '1fr', md: '1fr 1fr' }} gap={4}>
+//               <GridItem>
+//                 <FormControl id="name" isRequired>
+//                   <FormLabel>Name</FormLabel>
+//                   <Input type="text" name="name" value={formData.name} onChange={handleChange} />
+//                 </FormControl>
+//               </GridItem>
 
+//               <GridItem>
+//                 <FormControl id="mobile" isRequired>
+//                   <FormLabel>Mobile Number</FormLabel>
+//                   <Input type="text" name="mobile" value={formData.mobile} onChange={handleChange} />
+//                 </FormControl>
+//               </GridItem>
+
+//               <GridItem>
+//                 <FormControl id="email" isRequired>
+//                   <FormLabel>Email</FormLabel>
+//                   <Input type="email" name="email" value={formData.email} onChange={handleChange} />
+//                 </FormControl>
+//               </GridItem>
+
+//               <GridItem>
+//                 <FormControl id="address" isRequired>
+//                   <FormLabel>Address</FormLabel>
+//                   <Input type="text" name="address" value={formData.address} onChange={handleChange} />
+//                 </FormControl>
+//               </GridItem>
+
+//               <GridItem>
+//                 <FormControl id="city" isRequired>
+//                   <FormLabel>City</FormLabel>
+//                   <Input type="text" name="city" value={formData.city} onChange={handleChange} />
+//                 </FormControl>
+//               </GridItem>
+
+//               <GridItem>
+//                 <FormControl id="pincode" isRequired>
+//                   <FormLabel>Pincode</FormLabel>
+//                   <Input type="text" name="pincode" value={formData.pincode} onChange={handleChange} />
+//                 </FormControl>
+//               </GridItem>
+//             </Grid>
 
 //             {formData.userType === 'Business Partner' && (
 //               <>
-//                 <FormControl id="businessName" mb={4}>
+//                 <FormControl id="businessName" mt={4} isRequired>
 //                   <FormLabel>Business Name</FormLabel>
 //                   <Input
 //                     type="text"
@@ -562,57 +198,33 @@
 //                   />
 //                 </FormControl>
 
-//                 <FormControl id="businessType" mb={4}>
-//                 <FormLabel>Business Type</FormLabel>
-//                 <Select 
-//                   name="businessType" 
-//                   value={formData.businessType} 
-//                   onChange={handleChange}
-//                   placeholder="Select Business Type"
-//                 >
-//                   <option value="College">College</option>
-//                   <option value="School">School</option>
-//                   <option value="Tuition Center">Tuition Center</option>
-//                   <option value="Competitive Exams Institute">Competitive Exams Institute</option>
-//                   <option value="Other">Other</option>
-//                 </Select>
-//               </FormControl>
-
-//                 <FormControl id="trainingsProvided" mb={6}>
-//                   <FormLabel>Types of Trainings Provided</FormLabel>
-//                   <div className="form-group">
-//                     {trainingOptions.map((option, index) => (
-//                       <div key={index}>
-//                         <label>
-//                           <input
-//                             type="checkbox"
-//                             value={option}
-//                             checked={formData.trainingsProvided.includes(option)}
-//                             onChange={handleTrainingsCheckboxChange}
-//                           />
-//                           {option}
-//                         </label>
-//                       </div>
-//                     ))}
-//                   </div>
+//                 <FormControl id="businessType" mt={4} isRequired>
+//                   <FormLabel>Business Type</FormLabel>
+//                   <Select
+//                     name="businessType"
+//                     value={formData.businessType}
+//                     onChange={handleChange}
+//                     placeholder="Select Business Type"
+//                   >
+//                     <option value="College">College</option>
+//                     <option value="School">School</option>
+//                     <option value="Tuition Center">Tuition Center</option>
+//                     <option value="Competitive Exams Institute">Competitive Exams Institute</option>
+//                     <option value="Other">Other</option>
+//                   </Select>
 //                 </FormControl>
 //               </>
 //             )}
 
-//             <FormControl id="password" mb={6}>
+//             <FormControl id="password" mt={4} isRequired>
 //               <FormLabel>Password</FormLabel>
-//               <Input
-//                 type="password"
-//                 name="password"
-//                 value={formData.password}
-//                 onChange={handleChange}
-//               />
+//               <Input type="password" name="password" value={formData.password} onChange={handleChange} />
 //             </FormControl>
 
-//             <Button type="submit" colorScheme="pink" width="full" mb={4}>
+//             <Button colorScheme="purple" w="full" mt={6} type="submit">
 //               Register
 //             </Button>
-//             {error && <Text color="red.500">{error}</Text>}
+//             {error && <Text color="red.500" mt={4}>{error}</Text>}
 //           </form>
 //         )}
 //       </Box>
@@ -623,15 +235,17 @@
 // export default RegisterPage;
 
 
-// Version 4 - Design Enhancement to v3
 
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import Lottie from 'lottie-react';
-import successAnimation from '../animations/successfulLogin.json';
-//import failureAnimation from '../animations/error.json';
-import logo from '../assets/navbar/logo2.jpg';
+// Version 2 : Enhancement to Version 1
+
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
+import Select from "react-select";
+import successAnimation from "../animations/successfulLogin.json";
+import logo from "../assets/navbar/logo2.jpg";
+import useGetList from "@/hooks/useGetList";
 import {
   Box,
   Button,
@@ -644,10 +258,11 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
+  //Select,
   Stack,
-  Select,
   useBreakpointValue,
-} from '@chakra-ui/react';
+  Spinner,
+} from "@chakra-ui/react";
 
 export const RegisterPage = () => {
   interface FormData {
@@ -663,65 +278,71 @@ export const RegisterPage = () => {
     institute: string;
     businessName: string;
     businessType: string;
-    trainingsProvided: string[];
   }
 
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    mobile: '',
-    email: '',
-    address: '',
-    city: '',
-    pincode: '',
-    password: '',
-    userType: 'Candidate',
-    qualifications: '',
-    institute: '',
-    businessName: '',
-    businessType: '',
-    trainingsProvided: [],
+    name: "",
+    mobile: "",
+    email: "",
+    address: "",
+    city: "",
+    pincode: "",
+    password: "",
+    userType: "Candidate",
+    qualifications: "",
+    institute: "",
+    businessName: "",
+    businessType: "",
   });
 
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { data, isLoading } = useGetList(`/api/ip/institute/lists`);
+
+  // const handleChange = (
+  //   e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  // ) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData({ ...formData, [name]: value });
+  };
 
-  // const handleTrainingsCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { value, checked } = event.target;
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     trainingsProvided: checked
-  //       ? [...prevData.trainingsProvided, value]
-  //       : prevData.trainingsProvided.filter((training) => training !== value),
-  //   }));
-  // };
+  const handleInstituteChange = (selectedOption: any) => {
+    setFormData({ ...formData, institute: selectedOption?.value || "" });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post('https://admee.in:3003/api/ip/register', formData);
+      const response = await axios.post("https://admee.in:3003/api/ip/register", formData);
       if (response.status !== 205) {
         setSuccess(true);
-        setTimeout(() => navigate('/login'), 5000);
+        setTimeout(() => navigate("/login"), 5000);
       } else {
-        setError('Mobile Number Already Registered with Another Account');
+        setError("Mobile Number Already Registered with Another Account");
       }
     } catch (error) {
-      setError('Registration failed. Please try again.');
+      setError("Registration failed. Please try again.");
     }
   };
 
-  //const trainingOptions = ['Schools', 'Colleges', 'Government Competitive Exams', 'NEET', 'Bank Exams'];
+  const instituteOptions =
+    data?.map((item: { type: string }) => ({
+      value: item.type,
+      label: item.type,
+    })) || [];
 
   return (
-    <Center height="100vh" p={4}>
+    <Center height="100vh" bg="purple.50" p={4}>
       <Box
-        maxW={{ base: '95%', md: '600px' }}
+        maxW={{ base: "95%", md: "600px" }}
         w="full"
         borderWidth="1px"
         borderRadius="lg"
@@ -731,11 +352,12 @@ export const RegisterPage = () => {
         bg="white"
       >
         <Center mb={4}>
-          <img src={logo} alt="Logo" style={{ height: useBreakpointValue({ base: '40px', md: '175px' }) }} />
+          <img
+            src={logo}
+            alt="Logo"
+            style={{ height: useBreakpointValue({ base: "40px", md: "175px" }) }}
+          />
         </Center>
-        {/* <Heading size={useBreakpointValue({ base: 'md', md: 'lg' })} textAlign="center" mb={6}>
-          Register
-        </Heading> */}
 
         <RadioGroup
           onChange={(value) => setFormData({ ...formData, userType: value })}
@@ -750,14 +372,14 @@ export const RegisterPage = () => {
 
         {success ? (
           <Center flexDirection="column">
-            <Lottie animationData={successAnimation} style={{ height: '200px' }} />
+            <Lottie animationData={successAnimation} style={{ height: "200px" }} />
             <Text mt={4} fontSize="lg" fontWeight="bold" color="green.500">
               Successfully Registered
             </Text>
           </Center>
         ) : (
           <form onSubmit={handleSubmit}>
-            <Grid templateColumns={{ base: '1fr', md: '1fr 1fr' }} gap={4}>
+            <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
               <GridItem>
                 <FormControl id="name" isRequired>
                   <FormLabel>Name</FormLabel>
@@ -799,9 +421,85 @@ export const RegisterPage = () => {
                   <Input type="text" name="pincode" value={formData.pincode} onChange={handleChange} />
                 </FormControl>
               </GridItem>
+
+              {formData.userType === "Candidate" && (
+
+              // <GridItem colSpan={2}>
+              //   <FormControl id="institute" isRequired>
+              //     <FormLabel>Institute</FormLabel>
+              //     {isLoading ? (
+              //       <Spinner />
+              //     ) : (
+              //       <Select
+              //         options={instituteOptions}
+              //         placeholder="Search and select institute"
+              //         value={instituteOptions.find(
+              //           (option: any) => option.value === formData.institute
+              //         )}
+              //         onChange={handleInstituteChange}
+              //         isClearable
+              //         isSearchable
+              //       />
+              //     )}
+              //   </FormControl>
+              // </GridItem>
+
+                <GridItem colSpan={2}>
+                <FormControl id="institute" isRequired>
+                  <FormLabel>Institute</FormLabel>
+                  {isLoading ? (
+                    <Spinner />
+                  ) : (
+                    <Select
+                      options={instituteOptions}
+                      placeholder="Search and select institute"
+                      value={instituteOptions.find(
+                        (option: any) => option.value === formData.institute
+                      )}
+                      onChange={handleInstituteChange}
+                      isClearable
+                      isSearchable
+                      styles={{
+                        menu: (provided) => ({
+                          ...provided,
+                          maxHeight: "200px", // Sets the maximum height for the dropdown
+                          overflowY: "auto",  // Enables vertical scrolling
+                        }),
+                      }}
+                    />
+                  )}
+                </FormControl>
+              </GridItem>
+
+              
+        
+            //   <GridItem colSpan={2}>
+            //   <FormControl id="institute" isRequired>
+            //     <FormLabel>Institute</FormLabel>
+            //     {isLoading ? (
+            //       <Spinner />
+            //     ) : (
+            //       <Select
+            //         placeholder="Search and select institute"
+            //         value={formData.institute}
+            //         onChange={(e) =>
+            //           setFormData({ ...formData, institute: e.target.value })
+            //         }
+            //       >
+            //         {instituteOptions.map((option: any) => (
+            //           <option key={option.value} value={option.value}>
+            //             {option.label}
+            //           </option>
+            //         ))}
+            //       </Select>
+            //     )}
+            //   </FormControl>
+            // </GridItem>
+
+              )}
             </Grid>
 
-            {formData.userType === 'Business Partner' && (
+            {formData.userType === "Business Partner" && (
               <>
                 <FormControl id="businessName" mt={4} isRequired>
                   <FormLabel>Business Name</FormLabel>
@@ -813,7 +511,7 @@ export const RegisterPage = () => {
                   />
                 </FormControl>
 
-                <FormControl id="businessType" mt={4} isRequired>
+                {/* <FormControl id="businessType" mt={4} isRequired>
                   <FormLabel>Business Type</FormLabel>
                   <Select
                     name="businessType"
@@ -824,22 +522,68 @@ export const RegisterPage = () => {
                     <option value="College">College</option>
                     <option value="School">School</option>
                     <option value="Tuition Center">Tuition Center</option>
-                    <option value="Competitive Exams Institute">Competitive Exams Institute</option>
+                    <option value="Competitive Exams Institute">
+                      Competitive Exams Institute
+                    </option>
                     <option value="Other">Other</option>
                   </Select>
-                </FormControl>
+                </FormControl> */}
+                <FormControl id="businessType" mt={4} isRequired>
+                <FormLabel>Business Type</FormLabel>
+                {/* <Select
+                  name="businessType"
+                  value={formData.businessType}
+                  onChange={(e) => handleSelectChange("businessType", e.target.value)}
+                  placeholder="Select Business Type"
+                >
+                  <option value="College">College</option>
+                  <option value="School">School</option>
+                  <option value="Tuition Center">Tuition Center</option>
+                  <option value="Competitive Exams Institute">Competitive Exams Institute</option>
+                  <option value="Other">Other</option>
+                </Select> */}
+
+                <Select
+                  options={[
+                    { value: "College", label: "College" },
+                    { value: "School", label: "School" },
+                    { value: "Tuition Center", label: "Tuition Center" },
+                    { value: "Competitive Exams Institute", label: "Competitive Exams Institute" },
+                    { value: "Other", label: "Other" },
+                  ]}
+                  placeholder="Select Business Type"
+                  value={
+                    formData.businessType
+                      ? { value: formData.businessType, label: formData.businessType }
+                      : null
+                  }
+                  onChange={(selectedOption) =>
+                    handleSelectChange("businessType", selectedOption?.value || "")
+                  }
+                />
+              </FormControl>
+
               </>
             )}
 
             <FormControl id="password" mt={4} isRequired>
               <FormLabel>Password</FormLabel>
-              <Input type="password" name="password" value={formData.password} onChange={handleChange} />
+              <Input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
             </FormControl>
 
             <Button colorScheme="purple" w="full" mt={6} type="submit">
               Register
             </Button>
-            {error && <Text color="red.500" mt={4}>{error}</Text>}
+            {error && (
+              <Text color="red.500" mt={4}>
+                {error}
+              </Text>
+            )}
           </form>
         )}
       </Box>
@@ -849,3 +593,234 @@ export const RegisterPage = () => {
 
 export default RegisterPage;
 
+
+
+// Version 3 : Enhancement to Version 1
+
+
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';
+// import Lottie from 'lottie-react';
+// import Select from 'react-select';
+// import successAnimation from '../animations/successfulLogin.json';
+// import logo from '../assets/navbar/logo2.jpg';
+// import useGetList from '@/hooks/useGetList';
+// import {
+//   Box,
+//   Button,
+//   Input,
+//   Grid,
+//   GridItem,
+//   Center,
+//   Text,
+//   FormControl,
+//   FormLabel,
+//   Radio,
+//   RadioGroup,
+//   Stack,
+//   useBreakpointValue,
+//   Heading,
+// } from '@chakra-ui/react';
+
+// export const RegisterPage = () => {
+//   interface FormData {
+//     name: string;
+//     mobile: string;
+//     email: string;
+//     address: string;
+//     city: string;
+//     pincode: string;
+//     password: string;
+//     userType: string;
+//     qualifications: string;
+//     institute: string;
+//     businessName: string;
+//     businessType: string;
+//   }
+
+//   const [formData, setFormData] = useState<FormData>({
+//     name: '',
+//     mobile: '',
+//     email: '',
+//     address: '',
+//     city: '',
+//     pincode: '',
+//     password: '',
+//     userType: 'Candidate',
+//     qualifications: '',
+//     institute: '',
+//     businessName: '',
+//     businessType: '',
+//   });
+
+//   const [success, setSuccess] = useState(false);
+//   const [error, setError] = useState('');
+//   const navigate = useNavigate();
+
+//   const { data, isLoading } = useGetList('/api/ip/institute/lists');
+
+//   // Convert backend data to options for react-select
+//   const instituteOptions =
+//     data?.map((item: { type: string }) => ({
+//       value: item.type,
+//       label: item.type,
+//     })) || [];
+
+//   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+//     setFormData({ ...formData, [e.target.name]: e.target.value });
+//   };
+
+//   const handleInstituteChange = (selectedOption: any) => {
+//     setFormData({ ...formData, institute: selectedOption?.value || '' });
+//   };
+
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
+//     try {
+//       const response = await axios.post('https://admee.in:3003/api/ip/register', formData);
+//       if (response.status !== 205) {
+//         setSuccess(true);
+//         setTimeout(() => navigate('/login'), 5000);
+//       } else {
+//         setError('Mobile Number Already Registered with Another Account');
+//       }
+//     } catch (error) {
+//       setError('Registration failed. Please try again.');
+//     }
+//   };
+
+//   return (
+//     <Center height="100vh" p={4}>
+//       <Box
+//         maxW={{ base: '95%', md: '600px' }}
+//         w="full"
+//         borderWidth="1px"
+//         borderRadius="lg"
+//         overflow="hidden"
+//         p={6}
+//         boxShadow="lg"
+//         bg="white"
+//       >
+//         <Center mb={4}>
+//           <img
+//             src={logo}
+//             alt="Logo"
+//             style={{ height: useBreakpointValue({ base: '40px', md: '175px' }) }}
+//           />
+//         </Center>
+
+//         <Heading
+//           size={useBreakpointValue({ base: 'md', md: 'lg' })}
+//           textAlign="center"
+//           color="purple.600"
+//           mb={6}
+//         >
+//           Register
+//         </Heading>
+
+//         <RadioGroup
+//           onChange={(value) => setFormData({ ...formData, userType: value })}
+//           value={formData.userType}
+//           mb={6}
+//         >
+//           <Stack direction="row" justify="center" spacing={6}>
+//             <Radio value="Candidate" colorScheme="purple">
+//               Candidate
+//             </Radio>
+//             <Radio value="Business Partner" colorScheme="purple">
+//               Business Partner
+//             </Radio>
+//           </Stack>
+//         </RadioGroup>
+
+//         {success ? (
+//           <Center flexDirection="column">
+//             <Lottie animationData={successAnimation} style={{ height: '200px' }} />
+//             <Text mt={4} fontSize="lg" fontWeight="bold" color="green.500">
+//               Successfully Registered
+//             </Text>
+//           </Center>
+//         ) : (
+//           <form onSubmit={handleSubmit}>
+//             <Grid templateColumns={{ base: '1fr', md: '1fr 1fr' }} gap={4}>
+//               <GridItem>
+//                 <FormControl id="name" isRequired>
+//                   <FormLabel>Name</FormLabel>
+//                   <Input
+//                     type="text"
+//                     name="name"
+//                     value={formData.name}
+//                     onChange={handleChange}
+//                     focusBorderColor="purple.500"
+//                   />
+//                 </FormControl>
+//               </GridItem>
+
+//               <GridItem>
+//                 <FormControl id="mobile" isRequired>
+//                   <FormLabel>Mobile Number</FormLabel>
+//                   <Input
+//                     type="text"
+//                     name="mobile"
+//                     value={formData.mobile}
+//                     onChange={handleChange}
+//                     focusBorderColor="purple.500"
+//                   />
+//                 </FormControl>
+//               </GridItem>
+
+//               <GridItem>
+//                 <FormControl id="email" isRequired>
+//                   <FormLabel>Email</FormLabel>
+//                   <Input
+//                     type="email"
+//                     name="email"
+//                     value={formData.email}
+//                     onChange={handleChange}
+//                     focusBorderColor="purple.500"
+//                   />
+//                 </FormControl>
+//               </GridItem>
+
+//               <GridItem>
+//                 <FormControl id="institute" isRequired>
+//                   <FormLabel>Institute</FormLabel>
+//                   <Select
+//                     options={instituteOptions}
+//                     value={instituteOptions.find((opt) => opt.value === formData.institute)}
+//                     onChange={handleInstituteChange}
+//                     isLoading={isLoading}
+//                     placeholder="Select or Search Institute"
+//                     isClearable
+//                     styles={{
+//                       control: (base) => ({
+//                         ...base,
+//                         borderColor: 'purple.500',
+//                       }),
+//                       menu: (base) => ({
+//                         ...base,
+//                         zIndex: 9999,
+//                       }),
+//                     }}
+//                   />
+//                 </FormControl>
+//               </GridItem>
+//             </Grid>
+
+//             <Button colorScheme="purple" w="full" mt={6} type="submit">
+//               Register
+//             </Button>
+//             {error && (
+//               <Text color="red.500" mt={4}>
+//                 {error}
+//               </Text>
+//             )}
+//           </form>
+//         )}
+//       </Box>
+//     </Center>
+//   );
+// };
+
+// export default RegisterPage;

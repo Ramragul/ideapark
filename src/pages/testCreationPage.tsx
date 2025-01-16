@@ -1107,3 +1107,270 @@ export const TestCreationPage = () => {
 };
 
 export default TestCreationPage;
+
+
+
+// Version 5 : 4 is the working code, this is enhancement to that with multi mode test creation 
+
+
+// import React, { useState } from "react";
+// import {
+//   Tabs,
+//   TabList,
+//   TabPanels,
+//   Tab,
+//   TabPanel,
+//   Box,
+//   Button,
+//   Input,
+//   FormControl,
+//   FormLabel,
+//   Select,
+//   Textarea,
+//   Table,
+//   Thead,
+//   Tbody,
+//   Tr,
+//   Th,
+//   Td,
+//   IconButton,
+//   useToast,
+//   VStack,
+// } from "@chakra-ui/react";
+// import { AddIcon, EditIcon, DeleteIcon, CloseIcon } from "@chakra-ui/icons";
+// import { useState } from "react";
+
+// export const TestCreationPage = () => {
+//   const [questions, setQuestions] = useState<any[]>([]);
+//   const [currentQuestion, setCurrentQuestion] = useState<any>({
+//     question_text: "",
+//     options: ["", "", "", ""],
+//     correct_option: "",
+//     rewarded_marks: "",
+//     category: "",
+//     subject: "",
+//   });
+//   const [previewMode, setPreviewMode] = useState(false);
+//   const [editingIndex, setEditingIndex] = useState<number | null>(null);
+//   const toast = useToast();
+
+//   const handleAddQuestion = () => {
+//     if (!currentQuestion.question_text || !currentQuestion.correct_option) {
+//       toast({
+//         title: "Error",
+//         description: "Please fill in all required fields.",
+//         status: "error",
+//         duration: 3000,
+//         isClosable: true,
+//       });
+//       return;
+//     }
+//     setQuestions([...questions, { ...currentQuestion }]);
+//     setCurrentQuestion({
+//       question_text: "",
+//       options: ["", "", "", ""],
+//       correct_option: "",
+//       rewarded_marks: "",
+//       category: "",
+//       subject: "",
+//     });
+//     toast({
+//       title: "Success",
+//       description: "Question added successfully!",
+//       status: "success",
+//       duration: 2000,
+//       isClosable: true,
+//     });
+//   };
+
+//   const handleDeleteQuestion = (index: number) => {
+//     setQuestions(questions.filter((_, i) => i !== index));
+//   };
+
+//   const handleEditQuestion = (index: number) => {
+//     setEditingIndex(index);
+//     setCurrentQuestion(questions[index]);
+//     setPreviewMode(false); // Exit preview mode
+//   };
+
+//   const handleSaveEdit = () => {
+//     const updatedQuestions = [...questions];
+//     if (editingIndex !== null) {
+//       updatedQuestions[editingIndex] = { ...currentQuestion };
+//     }
+//     setQuestions(updatedQuestions);
+//     setEditingIndex(null);
+//     toast({
+//       title: "Success",
+//       description: "Question updated successfully!",
+//       status: "success",
+//       duration: 2000,
+//       isClosable: true,
+//     });
+//     setCurrentQuestion({
+//       question_text: "",
+//       options: ["", "", "", ""],
+//       correct_option: "",
+//       rewarded_marks: "",
+//       category: "",
+//       subject: "",
+//     });
+//   };
+
+//   return (
+//     <Box p={5}>
+//       <Tabs>
+//         <TabList>
+//           <Tab>Excel Upload</Tab>
+//           <Tab>Question Creation</Tab>
+//         </TabList>
+
+//         <TabPanels>
+//           {/* Excel Upload Tab */}
+//           <TabPanel>
+//             <Box>
+//               <FormLabel>Upload Excel</FormLabel>
+//               <Input type="file" />
+//             </Box>
+//           </TabPanel>
+
+//           {/* Question Creation Tab */}
+//           <TabPanel>
+//             {previewMode ? (
+//               // Preview Screen
+//               <Box>
+//                 <Table variant="striped" colorScheme="purple" size="sm">
+//                   <Thead>
+//                     <Tr>
+//                       <Th>#</Th>
+//                       <Th>Question</Th>
+//                       <Th>Options</Th>
+//                       <Th>Correct Option</Th>
+//                       <Th>Marks</Th>
+//                       <Th>Actions</Th>
+//                     </Tr>
+//                   </Thead>
+//                   <Tbody>
+//                     {questions.map((q, index) => (
+//                       <Tr key={index}>
+//                         <Td>{index + 1}</Td>
+//                         <Td>{q.question_text}</Td>
+//                         <Td>{q.options.join(", ")}</Td>
+//                         <Td>{q.correct_option}</Td>
+//                         <Td>{q.rewarded_marks}</Td>
+//                         <Td>
+//                           <IconButton
+//                             icon={<EditIcon />}
+//                             onClick={() => handleEditQuestion(index)}
+//                             mr={2}
+//                           />
+//                           <IconButton
+//                             icon={<DeleteIcon />}
+//                             onClick={() => handleDeleteQuestion(index)}
+//                           />
+//                         </Td>
+//                       </Tr>
+//                     ))}
+//                   </Tbody>
+//                 </Table>
+//                 <Button
+//                   mt={5}
+//                   leftIcon={<CloseIcon />}
+//                   colorScheme="purple"
+//                   onClick={() => setPreviewMode(false)}
+//                 >
+//                   Close Preview
+//                 </Button>
+//                 <Button
+//                   mt={5}
+//                   ml={3}
+//                   colorScheme="purple"
+//                   onClick={() => setPreviewMode(false)}
+//                 >
+//                   Continue Question Preparation
+//                 </Button>
+//               </Box>
+//             ) : (
+//               // Question Creation Screen
+//               <Box>
+//                 <VStack spacing={5}>
+//                   <FormControl>
+//                     <FormLabel>Question</FormLabel>
+//                     <Textarea
+//                       value={currentQuestion.question_text}
+//                       onChange={(e) =>
+//                         setCurrentQuestion({
+//                           ...currentQuestion,
+//                           question_text: e.target.value,
+//                         })
+//                       }
+//                     />
+//                   </FormControl>
+
+//                   <FormControl>
+//                     <FormLabel>Options</FormLabel>
+//                     {currentQuestion.options.map((option: string, index: number) => (
+//                       <Input
+//                         key={index}
+//                         placeholder={`Option ${index + 1}`}
+//                         value={option}
+//                         onChange={(e) => {
+//                           const newOptions = [...currentQuestion.options];
+//                           newOptions[index] = e.target.value;
+//                           setCurrentQuestion({ ...currentQuestion, options: newOptions });
+//                         }}
+//                       />
+//                     ))}
+//                   </FormControl>
+
+//                   <FormControl>
+//                     <FormLabel>Correct Option</FormLabel>
+//                     <Select
+//                       placeholder="Select Correct Option"
+//                       value={currentQuestion.correct_option}
+//                       onChange={(e) =>
+//                         setCurrentQuestion({
+//                           ...currentQuestion,
+//                           correct_option: e.target.value,
+//                         })
+//                       }
+//                     >
+//                       {currentQuestion.options.map((option: string, index: number) => (
+//                         <option key={index} value={option}>
+//                           {option}
+//                         </option>
+//                       ))}
+//                     </Select>
+//                   </FormControl>
+
+//                   <FormControl>
+//                     <FormLabel>Marks</FormLabel>
+//                     <Input
+//                       type="number"
+//                       value={currentQuestion.rewarded_marks}
+//                       onChange={(e) =>
+//                         setCurrentQuestion({
+//                           ...currentQuestion,
+//                           rewarded_marks: e.target.value,
+//                         })
+//                       }
+//                     />
+//                   </FormControl>
+
+//                   <Button colorScheme="purple" onClick={handleAddQuestion}>
+//                     Submit Question
+//                   </Button>
+//                   <Button colorScheme="purple" variant="outline" onClick={() => setPreviewMode(true)}>
+//                     Preview
+//                   </Button>
+//                 </VStack>
+//               </Box>
+//             )}
+//           </TabPanel>
+//         </TabPanels>
+//       </Tabs>
+//     </Box>
+//   );
+// };
+
+// export default TestCreationPage;

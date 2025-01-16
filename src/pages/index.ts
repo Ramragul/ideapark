@@ -21,3 +21,4 @@ export * from "./videoUploadPage";
 export * from "./studentHomePage";
 export * from "./documentUploadPage";
 export * from "./documentViewPage";
+export * from "./testCreationUI";

@@ -1,4 +1,4 @@
-import {Home, TestCreationPage, ExamPage, LoginPage, RegisterPage, AboutUs,PartnerLandingPage,StudentTestDashboard, TestManagementPage, TestDetailsPage, TestResultPage,TestResultDetailsPage,TestStatsPage,StudentStatsPage,StudentStatsDetailsPage,StudentHomePage,StudentTestHomePage,FileFormatPage,ResetPasswordPage, VideoPlaybackPage, VideoUploadPage,DocumentUploadPage,DocumentViewPage} from "./pages";
+import {Home, TestCreationPage, ExamPage, LoginPage, RegisterPage, AboutUs,PartnerLandingPage,StudentTestDashboard, TestManagementPage, TestDetailsPage, TestResultPage,TestResultDetailsPage,TestStatsPage,StudentStatsPage,StudentStatsDetailsPage,StudentHomePage,StudentTestHomePage,FileFormatPage,ResetPasswordPage, VideoPlaybackPage, VideoUploadPage,DocumentUploadPage,DocumentViewPage, TestCreationUI} from "./pages";
 import {
   HomeIcon,
 
@@ -29,6 +29,13 @@ export const routes = [
     name: "testCreation",
     path: "/test/creation",
     element: <TestCreationPage />,
+    visible: false,
+  },
+  {
+    icon: CheckBadgeIcon,
+    name: "testCreation UI ",
+    path: "/test/creation/ui",
+    element: <TestCreationUI />,
     visible: false,
   },
   {

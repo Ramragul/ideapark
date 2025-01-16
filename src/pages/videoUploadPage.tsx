@@ -288,6 +288,7 @@ export const VideoUploadPage: React.FC = () => {
     formData.append('course_id', course);
     formData.append('subject', subject);
     formData.append('uploader_id', authState.userId || '');
+    formData.append('institute', authState.institute || '');
 
     setShowAnimation(true);
     setAnimationType('loading');

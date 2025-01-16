@@ -333,11 +333,20 @@ export const RegisterPage = () => {
     }
   };
 
+  // Commented for Build Fix
+
+  // const instituteOptions =
+  //   data?.map((item: { type: string }) => ({
+  //     value: item.type,
+  //     label: item.type,
+  //   })) || [];
+
   const instituteOptions =
-    data?.map((item: { type: string }) => ({
-      value: item.type,
-      label: item.type,
-    })) || [];
+  (data as { type: string }[])?.map((item) => ({
+    value: item.type,
+    label: item.type,
+  })) || [];
+
 
   return (
     <Center height="100vh" bg="purple.50" p={4}>

@@ -852,7 +852,7 @@ import {
   Box,
   Button,
   Input,
-  Grid,
+  // Grid,
   GridItem,
   Center,
   Text,
@@ -1006,33 +1006,33 @@ export const RegisterPage = () => {
                 </FormControl>
              
 
-              <GridItem>
+              
                 <FormControl id="email" isRequired>
                   <FormLabel>Email</FormLabel>
                   <Input type="email" name="email" value={formData.email} onChange={handleChange} />
                 </FormControl>
-              </GridItem>
+             
 
-              <GridItem>
+           
                 <FormControl id="address" isRequired>
                   <FormLabel>Address</FormLabel>
                   <Input type="text" name="address" value={formData.address} onChange={handleChange} />
                 </FormControl>
-              </GridItem>
+             
 
-              <GridItem>
+              
                 <FormControl id="city" isRequired>
                   <FormLabel>City</FormLabel>
                   <Input type="text" name="city" value={formData.city} onChange={handleChange} />
                 </FormControl>
-              </GridItem>
+              
 
-              <GridItem>
+              
                 <FormControl id="pincode" isRequired>
                   <FormLabel>Pincode</FormLabel>
                   <Input type="text" name="pincode" value={formData.pincode} onChange={handleChange} />
                 </FormControl>
-              </GridItem>
+             
 
               {formData.userType === "Candidate" && (
 

@@ -2990,8 +2990,8 @@ export const ExamPage: React.FC = () => {
   const [testDetails, setTestDetails] = useState<TestDetails | null>(null);
   const { state } = useLocation();
   const testID = state?.testId;
-  //const testDuration = state?.testDuration;
-  const testDuration = 0.25;
+  const testDuration = state?.testDuration;
+  //const testDuration = 0.25;
   const institute = state?.institute;
   const testName = state?.testName;
 

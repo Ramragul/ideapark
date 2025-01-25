@@ -66,7 +66,7 @@ const App: React.FC = () => {
           {routes.map(({ path, element }, key) => (
             <Route key={key} path={path} element={element} />
           ))}
-          <Route path="*" element={<Navigate to="/home" replace />} />
+          <Route path="*" element={<Navigate to="/aboutus" replace />} />
         </Routes>
       </Box>
     </>

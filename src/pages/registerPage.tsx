@@ -780,6 +780,11 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 
+type CourseType = {
+  value: string;
+  label: string;
+};
+
 export const RegisterPage = () => {
   interface FormData {
     name: string;
@@ -868,7 +873,7 @@ export const RegisterPage = () => {
     }
   };
 
-  var courseOptions;
+  var courseOptions : CourseType[];
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -880,7 +885,7 @@ export const RegisterPage = () => {
         //setCourses(data.data);
         // setCourses(Array.isArray(data.data) ? data.data : []);
 
-        courseOptions =
+        courseOptions  =
         (data.data as { type: string }[])?.map((item) => ({
           value: item.type,
           label: item.type,

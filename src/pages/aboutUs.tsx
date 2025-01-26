@@ -250,10 +250,8 @@ import {
   VStack,
   SimpleGrid,
   Icon,
-  Stack,
   Button,
   useColorModeValue,
-  Image,
 } from '@chakra-ui/react';
 import { CheckCircleIcon } from '@chakra-ui/icons';
 

@@ -525,7 +525,7 @@ import { Box, Flex, Heading, Grid, GridItem, Button, VStack, Text } from '@chakr
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { FaClipboardCheck, FaChartBar } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion';  
 
 export const StudentTestHomePage: React.FC = () => {
   const navigate = useNavigate();

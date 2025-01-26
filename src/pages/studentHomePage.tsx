@@ -103,7 +103,7 @@
 import React from "react";
 import { Box, Flex, Heading, Text, Grid, GridItem, Icon } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { FaBook, FaVideo, FaFileAlt } from "react-icons/fa";
+import { FaBook, FaVideo } from "react-icons/fa";
 
 export const StudentHomePage: React.FC = () => {
   const navigate = useNavigate();

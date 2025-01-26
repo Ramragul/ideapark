@@ -755,7 +755,7 @@ interface ApiResponse {
 
 export const TestResultPage = () => {
   const { authState } = useAuth();
-  const userId = authState.userId;
+  //const userId = authState.userId;
   const [filteredResults, setFilteredResults] = useState<TestResult[] | null>(
     null
   );

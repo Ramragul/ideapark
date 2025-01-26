@@ -822,7 +822,7 @@ export const RegisterPage = () => {
   
   const [selectedInstitute, setSelectedInstitute] = useState("");
   const [selectedCourse, setSelectedCourse] = useState("");
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState<CourseType[]>([]);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -853,7 +853,7 @@ export const RegisterPage = () => {
   const handleCourseChange = (selectedOption: any) => {
 
     setSelectedCourse(selectedOption?.value);
-    console.log("Selected Courses:" +courses);
+    console.log("Selected Courses:" +selectedCourse);
    
     setFormData({ ...formData, course: selectedOption?.value || "" });
   };
@@ -873,7 +873,7 @@ export const RegisterPage = () => {
     }
   };
 
-  var courseOptions : CourseType[];
+  var courseOptions : CourseType[] ;
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -892,6 +892,7 @@ export const RegisterPage = () => {
         })) || [];
 
         setCourses(courseOptions);
+
         console.log("CourseOptions" +courseOptions)
 
       } catch (error) {

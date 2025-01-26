@@ -153,7 +153,7 @@ export const StudentHomePage: React.FC = () => {
           >
             <Icon as={FaBook} boxSize={12} color="pink.500" mb={4} />
             <Text fontSize="xl" fontWeight="bold" color="gray.800">
-              Test Home Page
+              Exams
             </Text>
           </Box>
         </GridItem>

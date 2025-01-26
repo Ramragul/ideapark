@@ -176,7 +176,7 @@ export const StudentHomePage: React.FC = () => {
           >
             <Icon as={FaVideo} boxSize={12} color="pink.500" mb={4} />
             <Text fontSize="xl" fontWeight="bold" color="gray.800">
-              Lectures Videos
+              Learnings
             </Text>
           </Box>
         </GridItem>
